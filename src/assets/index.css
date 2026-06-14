@@ -1,3 +1,9 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  body {
+    @apply scroll-smooth font-poppins text-black/80 dark:text-white/90 bg-slate-50 dark:bg-slate-950/85 transition-colors duration-300;
+  }
+}
