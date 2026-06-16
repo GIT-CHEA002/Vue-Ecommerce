@@ -1,32 +1,49 @@
 <script setup>
-import { ref } from 'vue'
-import { MoonIcon } from '@heroicons/vue/24/solid'
-import { useTheme } from '@/stores/theme'
-import { SunIcon } from '@heroicons/vue/16/solid'
-const theme = useTheme()
-const isDark = ref(theme.theme === 'dark')
+import { ref } from 'vue';
+import { MoonIcon } from '@heroicons/vue/24/solid';
+import { useTheme } from '@/stores/theme';
+import { SunIcon } from '@heroicons/vue/16/solid';
+const theme = useTheme();
+const isDark = ref(
+  theme.theme === 'dark',
+);
 </script>
 <template>
   <div
     class="flex items-center justify-between w-full max-w-xs p-4 bg-indigo-50 dark:bg-white/5 rounded-xl select-none"
   >
-    <div class="flex items-center gap-4">
-      <SunIcon v-if="theme.theme === 'dark'" class="w-6 h-6 text-indigo-700 dark:text-indigo-300" />
+    <div
+      class="flex items-center gap-4"
+    >
+      <SunIcon
+        v-if="
+          theme.theme ===
+          'dark'
+        "
+        class="w-6 h-6 text-indigo-700 dark:text-indigo-500"
+      />
       <MoonIcon
-        v-if="theme.theme === 'light'"
-        class="w-6 h-6 text-indigo-700 dark:text-indigo-300"
+        v-if="
+          theme.theme ===
+          'light'
+        "
+        class="w-6 h-6 text-indigo-700 dark:text-indigo-500"
       />
       <span
-        class="text-sm font-bold tracking-widest text-indigo-700 dark:text-indigo-300 uppercase"
+        class="text-sm font-bold tracking-widest text-indigo-700 dark:text-indigo-500 uppercase"
       >
         Dark Mode
       </span>
     </div>
 
-    <label class="relative inline-flex items-center cursor-pointer">
+    <label
+      class="relative inline-flex items-center cursor-pointer"
+    >
       <input
         type="checkbox"
-        @change="theme.toggleTheme()"
+        @change="
+          theme.toggleTheme()
+        "
         v-model="isDark"
         class="sr-only peer focus:outline-none"
       />

@@ -2,12 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainLayout from '@/layout/MainLayout.vue'
 import HomeView from '@/views/HomeView.vue'
 import AuthLayout from '@/layout/AuthLayout.vue'
-import LoginView from '@/views/LoginView.vue'
+import LoginView from '@/views/auth/LoginView.vue'
 import ProductsView from '@/views/ProductsView.vue'
 import ProductView from '@/views/ProductView.vue'
 import CheckoutLayout from '@/layout/CheckoutLayout.vue'
 import CheckoutView from '@/views/CheckoutView.vue'
-import RegisterView from '@/views/RegisterView.vue'
+import RegisterView from '@/views/auth/RegisterView.vue'
+import ContactView from '@/views/ContactView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,6 +51,15 @@ const router = createRouter({
           meta: {
             title: 'Ecommerce - View Product',
             pageLogo: '/productView.png',
+          },
+        },
+        {
+          path: 'contact',
+          name: 'Contact - page',
+          component: ContactView,
+          meta: {
+            title: 'Ecommerce - Contact',
+            pageLogo: '/contact.png',
           },
         },
 
@@ -162,7 +173,8 @@ const router = createRouter({
     // 404
     {
       path: '/:pathMatch(.*)*',
-      redirect: '/',
+      name: 'Not-Found-Page',
+      component: NotFoundView,
     },
   ],
 })

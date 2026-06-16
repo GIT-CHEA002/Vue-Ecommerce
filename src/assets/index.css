@@ -1,9 +1,35 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @layer base {
+  /* body {
+    @apply scroll-smooth font-poppins text-black/80 dark:text-white/90 bg-slate-50 dark:bg-slate-950/95 transition-colors duration-300;
+  } */
+  /* body {
+    @apply bg-slate-50 dark:bg-slate-900
+         text-slate-800 dark:text-slate-100
+         font-poppins transition-colors duration-300;
+  } */
   body {
-    @apply scroll-smooth font-poppins text-black/80 dark:text-white/90 bg-slate-50 dark:bg-slate-950/85 transition-colors duration-300;
+    @apply scroll-smooth bg-indigo-50/80 dark:bg-slate-950
+         text-slate-800 dark:text-slate-100
+         font-poppins transition-colors duration-300;
   }
+  /* body {
+    @apply bg-white dark:bg-slate-950
+         text-slate-700 dark:text-slate-200
+         font-poppins transition-colors duration-300;
+  } */
+  /* body {
+    @apply bg-zinc-50 dark:bg-zinc-900
+         text-zinc-800 dark:text-zinc-100
+         font-poppins transition-colors duration-300;
+  } */
+  /* body {
+    @apply scroll-smooth
+         font-poppins
+         bg-slate-50 dark:bg-slate-900
+         text-slate-800 dark:text-slate-100
+         transition-colors duration-300;
+  } */
 }
