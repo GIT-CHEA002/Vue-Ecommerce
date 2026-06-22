@@ -57,7 +57,7 @@ const links = [
 </script>
 <template>
   <nav
-    class="max-w-7xl px-4 sm:px-8 md:px-12 py-4 md:py-6 z-50 bg-white dark:bg-slate-900 shadow-md"
+    class="sticky top-0 z-50 max-w-7xl px-4 sm:px-8 md:px-12 py-4 md:py-6 bg-indigo-100 dark:bg-slate-900 shadow-md"
   >
     <div
       class="flex items-center justify-between"

@@ -2,7 +2,7 @@
 <template>
   <section>
     <main>
-      <!-- should be contents  -->
+      <RouterView />
     </main>
   </section>
 </template>

@@ -21,7 +21,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/16/solid';
         404 Error
       </h1>
       <HeroText />
-      <IntroText />
+      <IntroText default-text-color="opacity-75 text-black dark:text-indigo-50" />
       <div
         class="flex space-x-6 py-8 border-b-2"
       >
@@ -32,6 +32,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/16/solid';
         <SecondaryButton
           target="/products"
           title="Explore Collections"
+          
         />
       </div>
       <div class="mt-3">
@@ -62,7 +63,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/16/solid';
               class="flex-1 py-2 focus:outline-none bg-transparent px-2 placeholder:text-xs text-sm"
             />
           </div>
-          <div class="mt-2">
+          <div class="mt-2 text-end md:text-start">
             <button
               type="submit"
               class="py-2 px-4 inline-block tracking-wide text-xs sm:text-sm md:text-base rounded border bg-indigo-700 shadow-sm shadow-indigo-700 dark:shadow-indigo-300 text-white dark:bg-indigo-500 hover:bg-transparent hover:text-indigo-700 hover:border-indigo-700 dark:hover:bg-transparent dark:hover:text-white/90 dark:hover:border-white transition-colors duration-300"
