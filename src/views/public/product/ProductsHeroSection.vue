@@ -7,7 +7,7 @@ import SectionHeader from '@/components/shared/SectionHeader.vue';
     class="px-4 sm:px-8 md:px-12 py-4 md:py-12"
   >
     <div
-      class="grid grid-cols-2"
+      class="grid grid-cols-1 md:grid-cols-2"
     >
       <div class="space-y-3">
         <SectionHeader
@@ -19,7 +19,7 @@ import SectionHeader from '@/components/shared/SectionHeader.vue';
         />
       </div>
       <div
-        class="flex justify-end items-center"
+        class="flex justify-start md:justify-end items-center md:py-0 py-5"
       >
         <span
           class="text-sm mx-1"

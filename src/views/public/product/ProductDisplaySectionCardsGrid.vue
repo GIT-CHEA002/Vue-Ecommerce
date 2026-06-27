@@ -140,7 +140,7 @@ const paginationProduct =
 <template>
   <section class="w-full">
     <div
-      class="flex-1 md:border-l min-h-[180vh] md:ps-6"
+      class="flex-1 md:border-l h-fit md:min-h-[180vh] md:ps-6 py-4"
     >
       <h2
         class="text-xl font-bold text-indigo-700"

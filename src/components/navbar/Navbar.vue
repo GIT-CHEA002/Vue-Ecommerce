@@ -25,6 +25,27 @@ const isActiveLink = (
     route.path === routePath
   );
 };
+// const isActiveLink = (
+//   routePath,
+// ) => {
+//   if (
+//     Array.isArray(
+//       routePath.target,
+//     )
+//   ) {
+//     return routePath.target.some(
+//       (path) => {
+//         return route.path.startsWith(
+//           path.replace(
+//             ':/id',
+//             '',
+//           ),
+//         );
+//       },
+//     );
+//   }
+//   return route.path === routePath;
+// };
 const theme = useTheme();
 const isSidebarOpen =
   ref(false);
@@ -54,9 +75,9 @@ const links = [
     title: 'Contact',
   },
   {
-    target: "/category",
-    title:"Category"
-  }
+    target: '/category',
+    title: 'Category',
+  },
 ];
 </script>
 <template>

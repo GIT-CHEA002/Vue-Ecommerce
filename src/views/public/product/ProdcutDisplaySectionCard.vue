@@ -8,7 +8,7 @@ defineProps({
 </script>
 <template>
   <div
-    class=" flex-none w-60 md:w-auto p-2 border border-indigo-700 rounded-t overflow-hidden flex flex-col"
+    class="flex-none w-60 md:w-auto p-2 border border-indigo-700 rounded-t overflow-hidden flex flex-col"
   >
     <div
       class="h-[190px] rounded overflow-hidden"
@@ -31,7 +31,9 @@ defineProps({
       >
         <!-- slug -->
         <span
-          >{{ product.category }}.</span
+          >{{
+            product.category
+          }}.</span
         >
         <!-- colors -->
         <span>Crismon</span>
@@ -47,16 +49,16 @@ defineProps({
       >
         <button
           type="button"
-          class="flex-1 text-xs uppercase font-medium tracking-wider bg-indigo-100 text-indigo-700/90 hover:bg-indigo-200 py-2 rounded-lg transition-colors"
+          class="flex-1 text-[8px] sm:text-xs uppercase font-medium tracking-wider bg-indigo-100 text-indigo-700/90 hover:bg-indigo-200 py-2 px-1 rounded-lg transition-colors"
         >
           Add to Cart
         </button>
-        <button
-          type="button"
-          class="flex-1 text-xs uppercase font-medium tracking-wider bg-indigo-100 text-indigo-700/90 hover:bg-indigo-200 py-2 rounded-lg transition-colors"
+        <RouterLink
+          :to="`/product/${product.id}`"
+          class="flex-1 text-center text-[8px] sm:text-xs uppercase font-medium tracking-wider bg-indigo-100 text-indigo-700/90 hover:bg-indigo-200 py-2 px-1 rounded-lg transition-colors"
         >
           Details
-        </button>
+        </RouterLink>
       </div>
     </div>
   </div>

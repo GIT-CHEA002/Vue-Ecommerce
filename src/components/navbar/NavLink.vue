@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import { useRoute } from 'vue-router';
 
 defineProps({
   target: {
@@ -21,11 +20,13 @@ defineProps({
     :to="target.trim()"
     :class="[
       'capitalize text-sm lg:text-base font-semibold tracking-wide leading-none underline-offset-4 transition-all ease-in-out  ',
-      isActiveLink(target)
+      isActiveLink(
+        target.trim(),
+      )
         ? 'text-indigo-700 dark:text-indigo-500 underline'
         : 'hover:text-indigo-700/90 dark:hover:text-indigo-500/90 hover:underline',
     ]"
   >
-    {{ title }}
+    {{ title.trim() }}
   </RouterLink>
 </template>
