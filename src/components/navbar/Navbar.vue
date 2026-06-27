@@ -47,12 +47,16 @@ const links = [
   },
   {
     target: '/products',
-    title: 'Category',
+    title: 'Product',
   },
   {
     target: '/contact',
     title: 'Contact',
   },
+  {
+    target: "/category",
+    title:"Category"
+  }
 ];
 </script>
 <template>

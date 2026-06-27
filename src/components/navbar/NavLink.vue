@@ -20,7 +20,7 @@ defineProps({
   <RouterLink
     :to="target.trim()"
     :class="[
-      'capitalize font-semibold tracking-wide leading-none underline-offset-4 transition-all ease-in-out  ',
+      'capitalize text-sm lg:text-base font-semibold tracking-wide leading-none underline-offset-4 transition-all ease-in-out  ',
       isActiveLink(target)
         ? 'text-indigo-700 dark:text-indigo-500 underline'
         : 'hover:text-indigo-700/90 dark:hover:text-indigo-500/90 hover:underline',
