@@ -4,10 +4,15 @@ import TertiaryButton from '@/components/shared/button/TertiaryButton.vue';
 import InfoText from '@/components/shared/InfoText.vue';
 import PrimaryTitle from '@/components/shared/PrimaryTitle.vue';
 import RatingStar from '@/components/shared/RatingStar.vue';
-import { MinusIcon, PlusIcon } from '@heroicons/vue/16/solid';
-
-const props =
-  defineProps({
+import {
+  MinusIcon,
+  PlusIcon,
+} from '@heroicons/vue/16/solid';
+import {
+  CheckBadgeIcon,
+  ClockIcon,
+} from '@heroicons/vue/24/outline';
+const props = defineProps({
   quantity: {
     type: Number,
   },

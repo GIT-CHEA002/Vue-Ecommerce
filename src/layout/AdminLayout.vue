@@ -1,2 +1,7 @@
 <script setup></script>
-<template></template>
+<template>
+  <!-- main content for the admin layout -->
+  <main>
+    
+  </main>
+</template>

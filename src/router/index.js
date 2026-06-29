@@ -8,7 +8,7 @@ import AuthLayout from '@/layout/AuthLayout.vue';
 import LoginView from '@/views/auth/LoginView.vue';
 import ProductsView from '@/views/public/product/ProductsView.vue';
 import CheckoutLayout from '@/layout/CheckoutLayout.vue';
-import CheckoutView from '@/views/auth/CheckoutView.vue';
+import CheckoutView from '@/views/auth/checkout/CheckoutView.vue';
 import RegisterView from '@/views/auth/RegisterView.vue';
 import ContactView from '@/views/auth/ContactView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
@@ -155,7 +155,6 @@ const router = createRouter({
         */
       ],
     },
-
     // Auth Layout
     {
       path: '/auth',
@@ -189,10 +188,10 @@ const router = createRouter({
         },
       ],
     },
-
     // Checkout Layout
     {
       path: '/payment',
+      // main layout for the checkout layout and the process of payment
       component:
         CheckoutLayout,
       children: [
