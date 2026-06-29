@@ -10,10 +10,10 @@ import ProductsView from '@/views/public/product/ProductsView.vue';
 import CheckoutLayout from '@/layout/CheckoutLayout.vue';
 import CheckoutView from '@/views/auth/checkout/CheckoutView.vue';
 import RegisterView from '@/views/auth/RegisterView.vue';
-import ContactView from '@/views/auth/ContactView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 import CategoryView from '@/views/public/CategoryView.vue';
 import ProductDetailView from '@/views/public/productdetail/ProductDetailView.vue';
+import ContactView from '@/views/auth/contact/ContactView.vue';
 
 const router = createRouter({
   history: createWebHistory(
