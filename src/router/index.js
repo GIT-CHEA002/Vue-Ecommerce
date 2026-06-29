@@ -13,7 +13,7 @@ import RegisterView from '@/views/auth/RegisterView.vue';
 import ContactView from '@/views/auth/ContactView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 import CategoryView from '@/views/public/CategoryView.vue';
-import ProductDetailView from '@/views/public/ProductDetailView.vue';
+import ProductDetailView from '@/views/public/productdetail/ProductDetailView.vue';
 
 const router = createRouter({
   history: createWebHistory(

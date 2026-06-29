@@ -1,4 +1,5 @@
 <script setup>
+import RatingStar from '@/components/shared/RatingStar.vue';
 import {
   ChevronUpIcon,
   ChevronRightIcon,
@@ -48,7 +49,7 @@ const toggleIsCategoryOpen =
       isSidebarOpen
         ? 'translate-x-0'
         : '-translate-x-full',
-      'bg-white md:bg-transparent md:block md:w-[200px] lg:w-[300px] absolute left-0 ps-8 md:ps-0 md:sticky -top-[14rem] md:top-24 z-40 md:z-30 pe-6 h-screen transition-transform duration-300 md:translate-x-0',
+      'bg-white dark:bg-slate-950 border-r md:bg-transparent md:block md:w-[200px] lg:w-[300px] absolute left-0 ps-8 md:ps-0 md:sticky -top-[14rem] md:top-24 z-40 md:z-30 pe-6 h-screen transition-transform duration-300 md:translate-x-0',
     ]"
   >
     <div
@@ -91,10 +92,10 @@ const toggleIsCategoryOpen =
             @click="
               toggleSidebarOpen()
             "
-            class="py-1 px-2 bg-white text-black block md:hidden"
+            class="py-1 px-2 block md:hidden"
           >
             <XMarkIcon
-              class="w-6 h-6"
+              class="w-4 h-4"
             />
           </button>
         </div>
@@ -173,7 +174,7 @@ const toggleIsCategoryOpen =
         <div
           class="text-sm flex items-center justify-between"
         >
-          <span>$1000</span>
+          <span>$0</span>
           <span
             >${{
               priceRange
@@ -191,34 +192,10 @@ const toggleIsCategoryOpen =
       >
         Rating
       </h1>
-
-      <div
-        class="flex justify-between items-center"
-      >
-        <div
-          class="flex items-center justify-start space-x-3"
-        >
-          <StarIconSolid
-            class="w-4 h-4 fill-amber-500"
-          />
-          <StarIconSolid
-            class="w-4 h-4 fill-amber-500"
-          />
-          <StarIconSolid
-            class="w-4 h-4 fill-amber-500"
-          />
-          <StarIconSolid
-            class="w-4 h-4 fill-amber-500"
-          />
-          <StarIconOutline
-            class="w-4 h-4 fill-none stroke-[1.5] stroke-amber-500"
-          />
-        </div>
-        <span
-          class="text-sm text-slate-700 dark:text-indigo-50"
-          >4.5 ratings</span
-        >
-      </div>
+      <RatingStar
+        default-color="text-amber-400"
+        rating="4.5 Ratings"
+      />
     </div>
     <div class="py-6">
       <button

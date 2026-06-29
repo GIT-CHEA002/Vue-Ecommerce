@@ -21,7 +21,7 @@ const toggleSidebarOpen =
     >
       <!-- aside -->
       <span
-        class="fixed left-0 top-24 z-50 block md:hidden"
+        class="fixed left-0 top-1/2 z-50 block md:hidden"
       >
         <button
           v-if="!isSidebarOpen"

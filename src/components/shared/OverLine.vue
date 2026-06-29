@@ -8,7 +8,7 @@ defineProps({
 </script>
 <template>
   <span
-    class="text-indigo-700 dark:text-indigo-300 font-semibold uppercase text-xs"
+    class="text-indigo-700 tracking-wider dark:text-indigo-300 font-semibold uppercase text-xs"
   >
     {{ title }}
   </span>

@@ -7,13 +7,14 @@ defineProps({
   },
   defaultText: {
     type: String,
-    default: 'text-base md:text-lg lg:text-2xl font-semibold',
+    default:
+      'text-sm md:text-base lg:text-xl font-medium',
   },
 });
 </script>
 <template>
   <h1
-    :class="` py-1 ${defaultText} `"
+    :class="` py-1 tracking-wide ${defaultText} `"
   >
     {{ title }}
   </h1>
