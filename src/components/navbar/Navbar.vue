@@ -6,16 +6,14 @@ import {
   ShoppingCartIcon,
   MagnifyingGlassIcon,
   ListBulletIcon,
-  XMarkIcon,
 } from '@heroicons/vue/16/solid';
-import NavLink from './NavLink.vue';
+import NavbarLink from './NavbarLink.vue';
 import {
   onUpdated,
   ref,
 } from 'vue';
-import NavLinkMobile from './NavLinkMobile.vue';
 import { useRoute } from 'vue-router';
-import ToggleThemeButtonMobile from './ToggleThemeButtonMobile.vue';
+import SidebarMobile from './SidebarMobile.vue';
 
 const route = useRoute();
 const isActiveLink = (
@@ -25,27 +23,7 @@ const isActiveLink = (
     route.path === routePath
   );
 };
-// const isActiveLink = (
-//   routePath,
-// ) => {
-//   if (
-//     Array.isArray(
-//       routePath.target,
-//     )
-//   ) {
-//     return routePath.target.some(
-//       (path) => {
-//         return route.path.startsWith(
-//           path.replace(
-//             ':/id',
-//             '',
-//           ),
-//         );
-//       },
-//     );
-//   }
-//   return route.path === routePath;
-// };
+
 const theme = useTheme();
 const isSidebarOpen =
   ref(false);
@@ -100,7 +78,7 @@ const links = [
       <div
         class="flex-1 hidden md:flex items-center justify-center space-x-8"
       >
-        <NavLink
+        <NavbarLink
           v-for="item in links"
           :key="item"
           :is-active-link="
@@ -123,7 +101,6 @@ const links = [
             class="w-6 h-6 text-indigo-700 dark:text-indigo-500"
           />
         </RouterLink>
-
         <!-- Cart -->
         <div
           class="relative cursor-pointer"
@@ -161,6 +138,7 @@ const links = [
             class="w-6 h-6 text-indigo-700 dark:text-indigo-500"
           />
         </button>
+        <!-- toggle sidbars -->
         <button
           @click="
             toggleSiebarOpen
@@ -173,74 +151,18 @@ const links = [
         </button>
       </div>
       <!-- mobile menu -->
-      <Transition
-        enter-active-class="transition-transform duration-500 ease-out"
-        enter-from-class="translate-x-full"
-        enter-to-class="translate-x-0"
-        leave-to-class="translate-x-full"
-        leave-from-class="translate-x-0"
-        leave-active-class="transition-tranform duration-500 ease-in"
-      >
-        <div
-          v-if="isSidebarOpen"
-          class="fixed right-0 top-0 h-screen w-[300px] bg-white dark:bg-slate-900 z-50 shadow-xl border-l flex flex-col"
-        >
-          <div
-            class="flex items-center justify-between p-4 pb-4 border-b"
-          >
-            <h1
-              class="capitalize tracking-widest text-indigo-700 dark:text-indigo-500 text-sm md:text-base font-extrabold"
-            >
-              LuxeCommerce
-            </h1>
-            <button
-              @click="
-                toggleSiebarOpen
-              "
-            >
-              <XMarkIcon
-                class="w-6 h-6 text-indigo-700 dark:text-indigo-200"
-              />
-            </button>
-          </div>
-          <div
-            class="flex-1 flex flex-col p-4"
-          >
-            <div
-              class="flex-1 space-y-10"
-            >
-              <NavLinkMobile
-                target="/"
-                :is-active-link="
-                  isActiveLink
-                "
-              />
-              <NavLinkMobile
-                target="/products"
-                title="Products"
-                :is-active-link="
-                  isActiveLink
-                "
-              />
-              <NavLinkMobile
-                target="/products"
-                title="Category"
-                :is-active-link="
-                  isActiveLink
-                "
-              />
-              <NavLinkMobile
-                target="/contact"
-                title="Contact"
-                :is-active-link="
-                  isActiveLink
-                "
-              />
-            </div>
-            <ToggleThemeButtonMobile />
-          </div>
-        </div>
-      </Transition>
+      <SidebarMobile
+        :links="links"
+        :toggle-siebar-open="
+          toggleSiebarOpen
+        "
+        :is-sidebar-open="
+          isSidebarOpen
+        "
+        :is-active-link="
+          isActiveLink
+        "
+      />
     </div>
   </nav>
 </template>

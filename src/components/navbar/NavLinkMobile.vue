@@ -12,11 +12,15 @@ defineProps({
   isActiveLink: {
     type: Function,
   },
+  toggleSiebarOpen: {
+    type: Function,
+  },
 });
 </script>
 <template>
   <RouterLink
     :to="target.trim()"
+    @click="toggleSiebarOpen"
     :class="[
       ' block rounded capitalize text-xs sm:text-sm md:text-base py-4 px-2 font-semibold tracking-wide leading-none  transition-all ease-in-out',
       isActiveLink(

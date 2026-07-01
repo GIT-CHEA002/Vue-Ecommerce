@@ -29,7 +29,7 @@ const toggleSidebarOpen =
           @click="
             toggleSidebarOpen()
           "
-          class="border py-1 px-2 bg-white text-black rounded"
+          class="border py-1 px-2 bg-white text-black rounded-r"
         >
           <ListBulletIcon
             class="w-4 h-4"

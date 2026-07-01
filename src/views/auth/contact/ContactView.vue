@@ -46,7 +46,6 @@ const contactInfo = [
         default-text-color="text-slate-700 dark:text-indigo-50"
       />
     </div>
-
     <div
       class="grid grid-cols-1 md:grid-cols-2 auto-rows-auto gap-3"
     >
