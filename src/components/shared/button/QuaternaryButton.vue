@@ -8,11 +8,15 @@ defineProps({
     type: [Object, Function],
     default: TruckIcon,
   },
+  width: {
+    type: String,
+    default: 'w-full',
+  },
 });
 </script>
 <template>
   <div
-    class="w-full capitalize flex items-center justify-center space-x-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-indigo-50 py-4 px-6 rounded-2xl shadow-sm cursor-pointer"
+    :class="`${width} capitalize flex items-center justify-center space-x-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-indigo-50 py-4 px-6 rounded-2xl shadow-sm cursor-pointer`"
   >
     <component
       :is="icon"
