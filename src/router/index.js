@@ -15,6 +15,7 @@ import ProductDetailView from '@/views/public/productdetail/ProductDetailView.vu
 import ContactView from '@/views/auth/contact/ContactView.vue';
 import CartView from '@/views/auth/cart/CartView.vue';
 import CheckoutView from '@/views/auth/checkout/CheckoutView.vue';
+import PaymentMethodView from '@/views/auth/checkout/paymentmethod/PaymentMethodView.vue';
 
 const router = createRouter({
   history: createWebHistory(
@@ -204,6 +205,20 @@ const router = createRouter({
           name: 'checkout',
           component:
             CheckoutView,
+          meta: {
+            title:
+              'Payment - Checkout',
+            pageLogo:
+              '/checkout.png',
+            requiresAuth: true,
+            role: 'customer',
+          },
+        },
+        {
+          path: 'paymentmethod',
+          name: 'paymentmethod',
+          component:
+            PaymentMethodView,
           meta: {
             title:
               'Payment - Checkout',

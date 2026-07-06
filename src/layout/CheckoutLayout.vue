@@ -1,9 +1,13 @@
 <script setup>
 import Footer from '@/components/footer/Footer.vue';
+import { useTheme } from '@/stores/theme';
 import {
   ArrowLeftIcon,
   LockClosedIcon,
+  MoonIcon,
+  SunIcon,
 } from '@heroicons/vue/16/solid';
+const theme = useTheme();
 </script>
 <template>
   <nav
@@ -47,6 +51,23 @@ import {
           carts</span
         >
       </RouterLink>
+      <button
+        @click="
+          theme.toggleTheme()
+        "
+      >
+        <SunIcon
+          v-if="
+            theme.theme ===
+            'dark'
+          "
+          class="w-4 h-4 text-indigo-500"
+        />
+        <MoonIcon
+          v-else
+          class="w-4 h-4"
+        />
+      </button>
     </div>
   </nav>
   <main>
