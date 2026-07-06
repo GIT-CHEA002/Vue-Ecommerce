@@ -106,7 +106,7 @@ const links = [
           class="relative cursor-pointer"
         >
           <RouterLink
-            to="/payment/checkout"
+            to="/cart"
           >
             <ShoppingCartIcon
               class="w-6 h-6 text-indigo-700 dark:text-indigo-500"

@@ -57,7 +57,8 @@ import {
       >
     </div>
 
-    <button
+    <RouterLink
+      to="/payment/checkout"
       type="button"
       class="w-full flex items-center justify-center px-2 py-3 rounded-md bg-indigo-700 text-indigo-50 hover:bg-indigo-700/95 hover:scale-[1.01] transition-all duration-300"
     >
@@ -68,7 +69,7 @@ import {
       <ArrowRightIcon
         class="w-4 h-4"
       />
-    </button>
+    </RouterLink>
     <div
       class="py-6 space-y-2"
     >

@@ -132,7 +132,6 @@ onMounted(() => {
       i += 2;
     }
   }
-
   items.value = updatedItems;
 });
 </script>

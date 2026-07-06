@@ -1,6 +1,5 @@
 <script setup>
 import EyebrowText from '@/components/shared/EyebrowText.vue';
-import OverLine from '@/components/shared/OverLine.vue';
 import SectionHeader from '@/components/shared/SectionHeader.vue';
 import FeaturedCategoryCard from './FeaturedCategoryCard.vue';
 </script>

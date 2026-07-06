@@ -1,4 +1,6 @@
 <script setup>
+import InfoText from '@/components/shared/InfoText.vue';
+
 defineProps({
   item: {
     type: Object,
@@ -35,14 +37,25 @@ defineProps({
           "
           defualt-color="text-indigo-50/90 brightness-125"
         />
-        <button
-          @click="() => {}"
+        <RouterLink
+          :to="{
+            name: 'products',
+            query: {
+              category:
+                item.buttonText,
+            },
+          }"
+          @click="
+            console.log(
+              item.buttonText,
+            )
+          "
           class="w-fit capitalize flex items-center justify-center space-x-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-indigo-700 dark:text-indigo-50 font-medium py-2 px-6 rounded shadow-sm cursor-pointer transition-all duration-200 hover:bg-indigo-700 hover:text-white hover:border-indigo-700 hover:shadow-md dark:hover:bg-indigo-700 dark:hover:border-indigo-700"
         >
           {{
             item.buttonText
           }}
-        </button>
+        </RouterLink>
       </div>
     </div>
   </div>

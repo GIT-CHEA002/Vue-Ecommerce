@@ -8,12 +8,13 @@ import AuthLayout from '@/layout/AuthLayout.vue';
 import LoginView from '@/views/auth/LoginView.vue';
 import ProductsView from '@/views/public/product/ProductsView.vue';
 import CheckoutLayout from '@/layout/CheckoutLayout.vue';
-import CheckoutView from '@/views/auth/checkout/CheckoutView.vue';
 import RegisterView from '@/views/auth/RegisterView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 import CategoryView from '@/views/public/category/CategoryView.vue';
 import ProductDetailView from '@/views/public/productdetail/ProductDetailView.vue';
 import ContactView from '@/views/auth/contact/ContactView.vue';
+import CartView from '@/views/auth/cart/CartView.vue';
+import CheckoutView from '@/views/auth/checkout/CheckoutView.vue';
 
 const router = createRouter({
   history: createWebHistory(
@@ -95,19 +96,22 @@ const router = createRouter({
               '/productView.png',
           },
         },
-
-        // Future Customer Routes
-        /*
         {
           path: 'cart',
           name: 'cart',
           component: CartView,
           meta: {
-            title: 'Shopping Cart',
+            title:
+              'Payment - Shopping cart',
+            pageLogo:
+              '/checkout.png',
             requiresAuth: true,
             role: 'customer',
           },
         },
+
+        // Future Customer Routes
+        /*
         {
           path: 'wishlist',
           name: 'wishlist',
