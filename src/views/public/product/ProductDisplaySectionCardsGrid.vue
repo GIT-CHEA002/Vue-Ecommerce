@@ -136,6 +136,22 @@ const paginationProduct =
       start + pageSize,
     );
   });
+const handlePrev = () => {
+  prev();
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
+const handleNext = () => {
+  next();
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
 </script>
 <template>
   <section class="w-full">
@@ -154,7 +170,7 @@ const paginationProduct =
         >
       </h2>
       <div
-        class="py-6 flex flex-nowrap overflow-x-auto gap-6 md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible   [&::-webkit-scrollbar]:hidden"
+        class="py-6 flex flex-nowrap overflow-x-auto gap-6 md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible [&::-webkit-scrollbar]:hidden"
       >
         <ProdcutDisplaySectionCard
           v-for="product in paginationProduct"
@@ -176,8 +192,8 @@ const paginationProduct =
           isLastPage
         "
         :page-size="pageSize"
-        @prev="prev"
-        @next="next"
+        @prev="handlePrev"
+        @next="handleNext"
       />
     </div>
   </section>

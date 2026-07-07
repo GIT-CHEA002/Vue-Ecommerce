@@ -15,23 +15,13 @@ import ProductDetailView from '@/views/public/productdetail/ProductDetailView.vu
 import ContactView from '@/views/auth/contact/ContactView.vue';
 import CartView from '@/views/auth/cart/CartView.vue';
 import CheckoutView from '@/views/auth/checkout/CheckoutView.vue';
-import PaymentMethodView from '@/views/auth/checkout/paymentmethod/PaymentMethodView.vue';
+import PaymentMethodView from '@/views/auth/paymentmethod/PaymentMethodView.vue';
 
 const router = createRouter({
   history: createWebHistory(
     import.meta.env.BASE_URL,
   ),
-  scrollBehavior(
-    to,
-    from,
-    savePosition,
-  ) {
-    if (savePosition) {
-      return savePosition;
-    } else {
-      return { top: 0 };
-    }
-  },
+
   routes: [
     // Main Layout
     {
@@ -238,6 +228,17 @@ const router = createRouter({
       component: NotFoundView,
     },
   ],
+  scrollBehavior(
+    to,
+    from,
+    savePosition,
+  ) {
+    if (savePosition) {
+      return savePosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 router.afterEach((to) => {
   document.title =

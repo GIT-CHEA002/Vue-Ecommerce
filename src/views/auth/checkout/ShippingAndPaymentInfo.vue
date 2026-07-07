@@ -368,7 +368,14 @@ const total =
             class="w-4 h-4"
           />
         </RouterLink>
-        <h1 class="text-xs opacity-75 py-1">Your purchase is protected by our Buyer Protection Program</h1>
+        <h1
+          class="text-xs opacity-75 py-1"
+        >
+          Your purchase is
+          protected by our
+          Buyer Protection
+          Program
+        </h1>
       </div>
     </div>
   </section>
