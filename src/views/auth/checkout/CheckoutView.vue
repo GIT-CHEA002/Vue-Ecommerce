@@ -1,12 +1,15 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import CheckoutProcessSection from './CheckoutProcessSection.vue';
-import ShippingAndPaymentInfo from './ShippingAndPaymentInfo.vue';
-
+import ShippingAndPaymentInfoSection from './ShippingAndPaymentInfoSection.vue';
 const route = useRoute();
-const cartItems = JSON.parse(route.query.cartItems)
+const cartItems = JSON.parse(
+  route.query.cartItems,
+);
 </script>
 <template>
   <CheckoutProcessSection />
-  <ShippingAndPaymentInfo  :cart-items="cartItems" />
+  <ShippingAndPaymentInfoSection
+    :cart-items="cartItems"
+  />
 </template>

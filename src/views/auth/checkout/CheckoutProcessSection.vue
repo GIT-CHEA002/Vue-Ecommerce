@@ -7,7 +7,6 @@ const process = [
 
 const progress = 'shipping';
 </script>
-
 <template>
   <section
     class="px-4 sm:px-8 md:px-12 py-4 md:py-12 mt-8"
