@@ -121,7 +121,30 @@ export const productService =
         throw error;
       }
     },
-    async getAllCategoryProduct() {},
+    async getAllCategoryProduct(
+      category,
+    ) {
+      if (!category) {
+        console.warn(
+          'getAllCategoryProduct aborted: Category parameter is missing or undefined.',
+        );
+        return null;
+      }
+
+      try {
+        const response =
+          await api.get(
+            `/products/category/${category}`,
+          );
+        return response.data; 
+      } catch (error) {
+        console.error(
+          'Error fetching products by category:',
+          error,
+        );
+        throw error;
+      }
+    },
   };
 
 // test

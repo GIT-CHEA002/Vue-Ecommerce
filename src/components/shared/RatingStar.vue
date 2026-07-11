@@ -66,9 +66,7 @@ defineProps({
       v-if="ratingCount != ''"
       class="ml-2 tracking-wide text-sm text-slate-700 dark:text-indigo-50"
     >
-      ({{
-        ratingCount
-      }}
+      ({{ ratingCount }}
       Reviews)
     </span>
   </div>

@@ -1,7 +1,9 @@
 <script setup>
+import Bage from '@/components/shared/Bage.vue';
 import QuaternaryButton from '@/components/shared/button/QuaternaryButton.vue';
 import TertiaryButton from '@/components/shared/button/TertiaryButton.vue';
 import InfoText from '@/components/shared/InfoText.vue';
+import OverLine from '@/components/shared/OverLine.vue';
 import PrimaryTitle from '@/components/shared/PrimaryTitle.vue';
 import RatingStar from '@/components/shared/RatingStar.vue';
 import {
@@ -16,6 +18,9 @@ const props = defineProps({
   quantity: {
     type: Number,
   },
+  product: {
+    type: Object,
+  },
 });
 const emit = defineEmits([
   'update:quantity',
@@ -29,28 +34,70 @@ const emit = defineEmits([
       <OverLine
         title="limited edition"
       />
-      <Bage />
+      <Bage
+        :title="
+          props.product
+            ?.availabilityStatus
+        "
+        :default-text-color="
+          props.product
+            ?.availabilityStatus ===
+          'Low Stock'
+            ? 'text-amber-700'
+            : 'text-green-700'
+        "
+        :default-bg-color="
+          props.product
+            ?.availabilityStatus ===
+          'Low Stock'
+            ? 'bg-amber-600'
+            : 'bg-green-600'
+        "
+        :default-wrapper-color="
+          props.product
+            ?.availabilityStatus ===
+          'Low Stock'
+            ? 'bg-amber-100'
+            : 'bg-green-100'
+        "
+      />
     </div>
     <div class="block">
       <PrimaryTitle
-        title="The Architecture's Chronograph"
+        :title="
+          props.product?.title
+        "
       />
       <h1
         class="text-base md:text-lg lg:text-2xl font-bold"
       >
-        $1,249.00
+        ${{
+          props.product?.price
+        }}
       </h1>
       <span
         class="inline-block py-3"
       >
         <RatingStar
-          rating="4.8"
-          rating-count="128"
+          :rating="
+            props.product?.rating?.toString() ??
+            '0'
+          "
+          :rating-count="
+            String(
+              props.product
+                ?.reviews
+                ?.length ?? 0,
+            )
+          "
         />
       </span>
     </div>
     <InfoText
-      text="Designed for precision and styled for the modern professional. Featuring a hand-polished stainless steel case, a sapphire crystal lens, and a bespoke Italian indigo leather strap. A masterpiece of horology that bridges the gap between classic craftsmanship and contemporary minimalist design."
+      :text="
+        props.product
+          ?.description
+      "
     />
     <!-- add to card -->
     <div
@@ -109,7 +156,6 @@ const emit = defineEmits([
             />
           </button>
         </div>
-
         <TertiaryButton
           class="flex-1"
         >
@@ -131,7 +177,10 @@ const emit = defineEmits([
           <h1
             class="capitalize text-sm font-medium tracking-wider"
           >
-            2 Year warranty
+            {{
+              props.product
+                ?.warrantyInformation
+            }}
           </h1>
           <h1 class="text-xs">
             Global converage
@@ -148,7 +197,10 @@ const emit = defineEmits([
           <h1
             class="capitalize text-sm font-medium tracking-wider"
           >
-            30 day returns
+            {{
+              props.product
+                ?.returnPolicy
+            }}
           </h1>
           <h1 class="text-xs">
             No question asks

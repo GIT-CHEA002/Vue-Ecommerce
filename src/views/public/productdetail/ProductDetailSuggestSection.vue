@@ -1,6 +1,47 @@
 <script setup>
 import SectionHeader from '@/components/shared/SectionHeader.vue';
-// done 
+import ProductDetailSuggestSectionCard from './ProductDetailSuggestSectionCard.vue';
+import {
+  computed,
+  ref,
+  watch,
+} from 'vue';
+import { productService } from '@/services/productService.js';
+const props = defineProps({
+  product: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+const suggestionProduct = ref(
+  [],
+);
+const category = computed(
+  () =>
+    props.product?.category,
+);
+watch(
+  category,
+  async (newCategory) => {
+    if (!newCategory) return;
+    try {
+      const repsonse =
+        await productService.getAllCategoryProduct(
+          category.value,
+        );
+      suggestionProduct.value =
+        repsonse.products ||
+        [];
+    } catch (error) {
+      console.log(
+        'Failed to fetch suggestions:',
+        error,
+      );
+    }
+  },
+  { immediate: true },
+);
+// done
 </script>
 <template>
   <section class="py-6">
@@ -11,35 +52,11 @@ import SectionHeader from '@/components/shared/SectionHeader.vue';
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-8"
     >
-      <div
-        v-for="i in 4"
-        :key="i"
-        class="flex flex-col cursor-pointer dark:bg-slate-900 rounded border border-indigo-700 dark:border-indigo-50"
-      >
-        <div
-          class="h-[260px] overflow-hidden"
-        >
-          <img
-            src="https://picsum.photos/id/211/400/400"
-            alt=""
-            class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-          />
-        </div>
-        <div
-          class="flex-1 px-2 py-6"
-        >
-          <h1
-            class="font-semibold line-clamp-1"
-          >
-            The Executive
-            Backpack
-          </h1>
-          <span
-            class="text-xs text-slate-700 dark:text-indigo-50"
-            >$450.00</span
-          >
-        </div>
-      </div>
+      <ProductDetailSuggestSectionCard
+        v-for="product in suggestionProduct"
+        :key="product.id"
+        :product="product"
+      />
     </div>
   </section>
 </template>

@@ -1,15 +1,4 @@
 <script setup>
-import Bage from '@/components/shared/Bage.vue';
-import QuaternaryButton from '@/components/shared/button/QuaternaryButton.vue';
-import TertiaryButton from '@/components/shared/button/TertiaryButton.vue';
-import OverLine from '@/components/shared/OverLine.vue';
-import PrimaryTitle from '@/components/shared/PrimaryTitle.vue';
-import RatingStar from '@/components/shared/RatingStar.vue';
-import {
-  CheckBadgeIcon,
-  MinusIcon,
-  PlusIcon,
-} from '@heroicons/vue/16/solid';
 import ProductDetailInfoSectionImage from './ProductDetailInfoSectionImage.vue';
 import ProductDetailInfoSectionText from './ProductDetailInfoSectionText.vue';
 
@@ -22,6 +11,9 @@ const props = defineProps({
   },
   quantity: {
     type: Number,
+  },
+  product: {
+    type: Object,
   },
 });
 const emit = defineEmits([
@@ -58,6 +50,7 @@ const emit = defineEmits([
           $event,
         )
       "
+      :product="props.product || []"
     />
   </section>
 </template>

@@ -8,10 +8,7 @@ const props = defineProps({
   },
 });
 // add to cart process
-onMounted(() => {
-  
-});
-console.log(props.product);
+onMounted(() => {});
 </script>
 <template>
   <div
