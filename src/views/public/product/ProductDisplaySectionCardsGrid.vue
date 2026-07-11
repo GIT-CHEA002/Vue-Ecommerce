@@ -6,9 +6,9 @@ import {
   computed,
   onMounted,
   reactive,
-  ref,
 } from 'vue';
 import Pagination from '@/components/shared/Pagination.vue';
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 defineProps({
   category: {
     type: String,
@@ -19,12 +19,22 @@ defineProps({
 });
 const state = reactive({
   allProducts: [],
+  isLoading: true,
 });
 onMounted(async () => {
-  const response =
-    await productService.getAllProducts();
-  state.allProducts =
-    response.data.products;
+  try {
+    const response =
+      await productService.getAllProducts();
+    state.allProducts =
+      response.data.products;
+  } catch (error) {
+    console.log(
+      'Error in fetching products:',
+      error,
+    );
+  } finally {
+    state.isLoading = false;
+  }
 });
 
 // product per page to display
@@ -78,6 +88,17 @@ const handleNext = () => {
 <template>
   <section class="w-full">
     <div
+      v-if="state.isLoading"
+      class="h-full flex justify-center items-center gap-2"
+    >
+      <span
+        class="block text-sm"
+        >Loading</span
+      >
+      <PulseLoader />
+    </div>
+    <div
+      v-else
       class="flex-1 md:border-l h-fit md:min-h-[180vh] md:ps-6 py-4"
     >
       <h2

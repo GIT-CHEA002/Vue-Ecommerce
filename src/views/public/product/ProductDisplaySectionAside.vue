@@ -5,8 +5,6 @@ import {
   ChevronRightIcon,
   XMarkIcon,
 } from '@heroicons/vue/16/solid';
-import { StarIcon as StarIconSolid } from '@heroicons/vue/16/solid';
-import { StarIcon as StarIconOutline } from '@heroicons/vue/24/outline';
 import {
   reactive,
   ref,
