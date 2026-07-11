@@ -1,10 +1,17 @@
 <script setup>
-defineProps({
+import { onMounted } from 'vue';
+
+const props = defineProps({
   product: {
     type: Object,
     required: false,
   },
 });
+// add to cart process
+onMounted(() => {
+  
+});
+console.log(props.product);
 </script>
 <template>
   <div
@@ -14,7 +21,9 @@ defineProps({
       class="h-[190px] rounded overflow-hidden"
     >
       <img
-        :src="product.image"
+        :src="
+          product.images[0]
+        "
         alt=""
         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
       />
@@ -24,19 +33,23 @@ defineProps({
       <h1
         class="text-sm line-clamp-1 font-semibold text-slate-700 dark:text-indigo-50"
       >
-        {{ product.name }}
+        {{ product.title }}
       </h1>
       <h1
-        class="capitalize text-xs text-opacity-75 text-slate-700 dark:text-indigo-50"
+        class="capitalize flex gap-2 text-xs text-opacity-75 text-slate-700 dark:text-indigo-50"
       >
         <!-- slug -->
         <span
           >{{
-            product.category
-          }}.</span
+            product.tags[0]
+          }},</span
         >
-        <!-- colors -->
-        <span>Crismon</span>
+        <span
+          class="font-semibold"
+          >{{
+            product.tags[1]
+          }}</span
+        >
       </h1>
       <!-- price -->
       <h1

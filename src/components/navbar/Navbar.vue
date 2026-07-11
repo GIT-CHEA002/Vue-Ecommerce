@@ -9,12 +9,12 @@ import {
 } from '@heroicons/vue/16/solid';
 import NavbarLink from './NavbarLink.vue';
 import {
+  onMounted,
   onUpdated,
   ref,
 } from 'vue';
 import { useRoute } from 'vue-router';
 import SidebarMobile from './SidebarMobile.vue';
-
 const route = useRoute();
 const isActiveLink = (
   routePath,
