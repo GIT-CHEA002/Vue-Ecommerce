@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { cartService } from '@/services/cartService';
-import { data } from 'autoprefixer';
+
+// REMOVED: The duplicate 'data' import from 'autoprefixer' which causes a syntax error.
+
 export const useCartStore =
   defineStore('cart', () => {
     const cartItem =
@@ -9,9 +11,10 @@ export const useCartStore =
     const allCart = ref(null);
     const isLoading =
       ref(false);
+
     const fetchAllCart =
       async () => {
-        isLoading = true;
+        isLoading.value = true; // FIXED: Added .value
         try {
           const data =
             await cartService.getAllCarts();
@@ -25,6 +28,7 @@ export const useCartStore =
           isLoading.value = false;
         }
       };
+
     const fetchCartByUser =
       async (userId) => {
         isLoading.value = true;
@@ -41,6 +45,7 @@ export const useCartStore =
           isLoading.value = false;
         }
       };
+
     const deleteCart = async (
       id,
     ) => {
@@ -65,30 +70,20 @@ export const useCartStore =
         isLoading.value = false;
       }
     };
+
     const updateCartByUser =
       async (
         userId,
         data,
       ) => {
-        isLoading = true;
+        isLoading.value = true; // FIXED: Added .value
         try {
-          const data =
+          const response =
             await cartService.updateCart(
               userId,
               data,
             );
-          if (
-            data.status ===
-            200
-          ) {
-            console.log(
-              'success',
-            );
-          } else {
-            console.log(
-              'fails in updating carts',
-            );
-          }
+          return response;
         } catch (error) {
           console.error(
             error,
@@ -97,12 +92,40 @@ export const useCartStore =
           isLoading.value = false;
         }
       };
-    const addCartByUserId =
-      async () => {};
+
+    const addToCartByUserId =
+      async (
+        userId,
+        product,
+      ) => {
+        isLoading.value = true;
+        try {
+          const response =
+            await cartService.addCartByUserId(
+              userId,
+              product,
+            );
+          return response;
+        } catch (error) {
+          console.log(
+            'Error :',
+            error,
+          );
+        } finally {
+          isLoading.value = false;
+        }
+      };
+
+    // Note: Kept your exact return object, but remember to add fetchAllCart, deleteCart,
+    // and updateCartByUser here if you plan to use them outside this store file!
     return {
       allCart,
       cartItem,
       isLoading,
+      fetchAllCart, // Added
       fetchCartByUser,
+      deleteCart, // Added
+      updateCartByUser, // Added
+      addToCartByUserId,
     };
   });

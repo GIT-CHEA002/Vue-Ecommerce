@@ -52,15 +52,21 @@ export const cartService = {
   },
   async addCartByUserId(
     userId,
-    data,
+    product,
   ) {
+    // Changed 'data' variable name to 'product' for clarity
     try {
       const response =
         await api.post(
           '/carts/add',
           {
             userId: userId,
-            products: data,
+            products: [
+              {
+                id: product.id, // Extract the actual product ID
+                quantity: 1, // Add a default starting quantity
+              },
+            ],
           },
         );
       return response;

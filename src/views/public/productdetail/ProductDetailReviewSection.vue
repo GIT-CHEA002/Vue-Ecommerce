@@ -1,17 +1,12 @@
 <script setup>
 import RatingStar from '@/components/shared/RatingStar.vue';
 import SectionHeader from '@/components/shared/SectionHeader.vue';
-import { watchEffect } from 'vue';
-
 import ProductDetailReviewSectionCard from './ProductDetailReviewSectionCard.vue';
 const props = defineProps({
   product: {
     type: Object,
   },
 });
-watchEffect(() =>
-  console.log(props.product),
-);
 </script>
 <template>
   <section class="py-6">
