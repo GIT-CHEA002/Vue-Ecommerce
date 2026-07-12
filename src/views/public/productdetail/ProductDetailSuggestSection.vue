@@ -11,7 +11,7 @@ const props = defineProps({
   product: {
     type: Object,
     default: () => ({}),
-  },
+  },  
 });
 const suggestionProduct = ref(
   [],
@@ -41,6 +41,9 @@ watch(
   },
   { immediate: true },
 );
+const emit = defineEmits([
+  'reset:quantity',
+]);
 // done
 </script>
 <template>
@@ -56,6 +59,11 @@ watch(
         v-for="product in suggestionProduct"
         :key="product.id"
         :product="product"
+        @reset:quantity="
+          emit(
+            'reset:quantity',
+          )
+        "
       />
     </div>
   </section>

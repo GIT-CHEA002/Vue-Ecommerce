@@ -128,6 +128,9 @@ const quantity = ref(1);
         :product="
           state.product
         "
+        @reset:quantity="
+          quantity = 1
+        "
       />
     </div>
   </div>

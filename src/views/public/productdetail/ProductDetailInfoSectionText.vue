@@ -224,6 +224,12 @@ const addToCart = async (
       <QuaternaryButton>
         free express delivery
       </QuaternaryButton>
+      <QuaternaryButton>
+        {{
+          props.product
+            .shippingInformation
+        }}
+      </QuaternaryButton>
     </div>
     <div class="flex py-6">
       <div

@@ -5,10 +5,16 @@ const props = defineProps({
     default: () => ({}),
   },
 });
+const emit = defineEmits([
+  ['reset:quantity'],
+]);
 </script>
 <template>
   <RouterLink
     :to="`/product/${product.id}`"
+    @click="
+      emit('reset:quantity')
+    "
   >
     <div
       class="flex flex-col cursor-pointer dark:bg-slate-900 rounded border border-indigo-700 dark:border-indigo-50"
