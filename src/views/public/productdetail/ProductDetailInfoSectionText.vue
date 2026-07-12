@@ -6,6 +6,8 @@ import InfoText from '@/components/shared/InfoText.vue';
 import OverLine from '@/components/shared/OverLine.vue';
 import PrimaryTitle from '@/components/shared/PrimaryTitle.vue';
 import RatingStar from '@/components/shared/RatingStar.vue';
+import { useCartStore } from '@/stores/cartStore';
+import { useToast } from 'vue-toastification';
 import {
   MinusIcon,
   PlusIcon,
@@ -25,6 +27,45 @@ const props = defineProps({
 const emit = defineEmits([
   'update:quantity',
 ]);
+const toast = useToast();
+const { addToCartByUserId } =
+  useCartStore();
+const addToCart = async (
+  userId,
+  product,
+) => {
+  try {
+    const repsonse =
+      await addToCartByUserId(
+        userId,
+        product,
+      );
+    if (
+      (repsonse &&
+        repsonse.status ===
+          200) ||
+      repsonse.status ==
+        201 ||
+      repsonse.id
+    ) {
+      toast.success(
+        'Add cart success with product id ',
+      );
+    } else {
+      toast.error(
+        'Add to cart fails with product id = ',
+      );
+    }
+  } catch (error) {
+    console.log(
+      'Error adding to cart:',
+      error,
+    );
+    toast.error(
+      'Add error occur while adding to cart',
+    );
+  }
+};
 </script>
 <template>
   <div class="block">
@@ -159,7 +200,9 @@ const emit = defineEmits([
         <TertiaryButton
           class="flex-1"
         >
-          add to cart
+          <span @click="">
+            add to cart</span
+          >
         </TertiaryButton>
       </div>
       <QuaternaryButton>

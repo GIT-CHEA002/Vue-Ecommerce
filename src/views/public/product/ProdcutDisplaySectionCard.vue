@@ -1,6 +1,4 @@
 <script setup>
-import { onMounted } from 'vue';
-import { storeToRefs } from 'pinia'; // 1. Import storeToRefs
 import { useCartStore } from '@/stores/cartStore';
 import { useToast } from 'vue-toastification';
 
@@ -8,18 +6,9 @@ const toast = useToast();
 const cartStore =
   useCartStore();
 
-// 2. Extract state and getters safely using storeToRefs to keep them reactive
-const {
-  allCart,
-  cartItem,
-  isLoading,
-} = storeToRefs(cartStore);
-
 // 3. Extract actions directly from the store
-const {
-  fetchCartByUser,
-  addToCartByUserId,
-} = cartStore;
+const { addToCartByUserId } =
+  cartStore;
 
 const props = defineProps({
   product: {
@@ -28,42 +17,44 @@ const props = defineProps({
   },
 });
 
-const addToCart =
-  async () => {
-    try {
-      // Fixed typo: response
-      const response =
-        await addToCartByUserId(
-          1,
-          props.product,
-        );
-
-      // Note: Verify if your action returns the full axios/fetch response
-      // or just the data. Adjust this check accordingly!
-      if (
-        response &&
-        (response.status ===
-          200 ||
-          response.status ===
-            201 ||
-          response.id)
-      ) {
-        toast.success(
-          'Added to cart successfully!',
-        );
-      } else {
-        toast.error(
-          'Failed adding to cart',
-        );
-      }
-      console.log(response);
-    } catch (error) {
-      console.error(error);
+const addToCart = async (
+  userId = 1,
+  product,
+) => {
+  try {
+    const response =
+      await addToCartByUserId(
+        userId,
+        {
+          id: product.id,
+          quantity: 1,
+        },
+      );
+    if (
+      response &&
+      (response.status ===
+        200 ||
+        response.status ===
+          201 ||
+        response.id)
+    ) {
+      toast.success(
+        'Added to cart successfully! with product title = ' +
+          product.title,
+      );
+    } else {
       toast.error(
-        'An error occurred while adding to cart',
+        'Failed adding to cart with product title = ' +
+          product.title,
       );
     }
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error(
+      'An error occurred while adding to cart',
+    );
+  }
+};
 </script>
 <template>
   <div
@@ -114,7 +105,12 @@ const addToCart =
       >
         <button
           type="button"
-          @click="addToCart()"
+          @click="
+            addToCart(
+              1,
+              props.product,
+            )
+          "
           class="flex-1 text-[8px] sm:text-xs uppercase font-medium tracking-wider bg-indigo-100 text-indigo-700/90 hover:bg-indigo-200 py-2 px-1 rounded-lg transition-colors"
         >
           Add to Cart

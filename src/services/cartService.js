@@ -62,10 +62,7 @@ export const cartService = {
           {
             userId: userId,
             products: [
-              {
-                id: product.id, // Extract the actual product ID
-                quantity: 1, // Add a default starting quantity
-              },
+              product,
             ],
           },
         );

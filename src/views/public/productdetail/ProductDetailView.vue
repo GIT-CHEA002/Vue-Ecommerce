@@ -1,7 +1,6 @@
 <script setup>
 import {
   computed,
-  onMounted,
   reactive,
   ref,
   watch,
@@ -76,16 +75,19 @@ const quantity = ref(1);
     <!-- go back to product pages  -->
     <button
       @click="
-        () => {
-          router.back();
-        }
+        router.push(
+          '/products',
+        )
       "
       class="flex hover:underline underline-offset-2 transition-transform duration-300 overflow-hidden items-center gap-2 text-sm font-medium text-indigo-700 dark:text-indigo-50"
     >
       <ArrowLeftIcon
         class="w-3 h-3"
       />
-      <span>Back</span>
+      <span
+        >Back To Product
+        page</span
+      >
     </button>
     <div
       v-if="state.isLoading"
