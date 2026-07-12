@@ -9,12 +9,9 @@ export const useCartStore =
     const cartItem =
       ref(null);
     const allCart = ref(null);
-    const isLoading =
-      ref(false);
 
     const fetchAllCart =
       async () => {
-        isLoading.value = true; // FIXED: Added .value
         try {
           const data =
             await cartService.getAllCarts();
@@ -24,32 +21,28 @@ export const useCartStore =
           console.error(
             error,
           );
-        } finally {
-          isLoading.value = false;
         }
       };
 
     const fetchCartByUser =
       async (userId) => {
-        isLoading.value = true;
         try {
-          cartItem.value =
+          const response =
             await cartService.getAllCartByUser(
               userId,
             );
+          cartItem.value =
+            response.data;
         } catch (error) {
           console.error(
             error,
           );
-        } finally {
-          isLoading.value = false;
         }
       };
 
     const deleteCart = async (
       id,
     ) => {
-      isLoading.value = true;
       try {
         const data =
           await cartService.deleteCart(
@@ -66,8 +59,6 @@ export const useCartStore =
         }
       } catch (error) {
         console.error(error);
-      } finally {
-        isLoading.value = false;
       }
     };
 
@@ -76,7 +67,6 @@ export const useCartStore =
         userId,
         data,
       ) => {
-        isLoading.value = true; // FIXED: Added .value
         try {
           const response =
             await cartService.updateCart(
@@ -88,8 +78,6 @@ export const useCartStore =
           console.error(
             error,
           );
-        } finally {
-          isLoading.value = false;
         }
       };
 
@@ -98,7 +86,6 @@ export const useCartStore =
         userId,
         product,
       ) => {
-        isLoading.value = true;
         try {
           const response =
             await cartService.addCartByUserId(
@@ -111,8 +98,6 @@ export const useCartStore =
             'Error :',
             error,
           );
-        } finally {
-          isLoading.value = false;
         }
       };
 
@@ -121,7 +106,6 @@ export const useCartStore =
     return {
       allCart,
       cartItem,
-      isLoading,
       fetchAllCart, // Added
       fetchCartByUser,
       deleteCart, // Added

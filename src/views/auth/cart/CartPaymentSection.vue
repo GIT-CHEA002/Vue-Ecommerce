@@ -5,11 +5,60 @@ import {
   ShieldCheckIcon,
   TruckIcon,
 } from '@heroicons/vue/16/solid';
+import { computed } from 'vue';
 const props = defineProps({
-  cartItems: {
-    type: Array,
+  carts: {
+    type: Object,
+    default: () => {},
   },
 });
+
+const paymentSummary =
+  computed(() => {
+    // Fallbacks if props.carts is still loading or undefined
+    const total =
+      props.carts?.total || 0;
+    const discountedTotal =
+      props.carts
+        ?.discountedTotal ||
+      0;
+    const totalQuantity =
+      props.carts
+        ?.totalQuantity || 0;
+
+    const subTotal = total;
+    const discountedPrice =
+      total - discountedTotal;
+    const shipping =
+      totalQuantity * 1.2;
+    const tax = total * 0.1;
+
+    // Final total: Subtotal minus discount, plus shipping and tax charges
+    const finalTotal =
+      subTotal -
+      discountedPrice +
+      shipping +
+      tax;
+
+    // Format the outputs uniformly with .toFixed(2) for your UI layout display
+    return {
+      subTotal:
+        subTotal.toFixed(2),
+      discountedTotal:
+        discountedTotal.toFixed(
+          2,
+        ),
+      discountedPrice:
+        discountedPrice.toFixed(
+          2,
+        ),
+      shipping:
+        shipping.toFixed(2),
+      tax: tax.toFixed(2),
+      finalTotal:
+        finalTotal.toFixed(2),
+    };
+  });
 </script>
 <template>
   <section
@@ -27,25 +76,55 @@ const props = defineProps({
         class="flex justify-between items-center text-sm"
       >
         <span>Subtotal</span>
-        <span>$610.00</span>
+        <span
+          >${{
+            paymentSummary.subTotal
+          }}</span
+        >
       </div>
       <div
         class="flex justify-between items-center text-sm"
       >
         <span>Shipping</span>
-        <span>$15.00</span>
+        <span
+          >${{
+            paymentSummary.shipping
+          }}</span
+        >
       </div>
       <div
         class="flex justify-between items-center text-sm"
       >
         <span>Tax</span>
-        <span>$48.00</span>
+        <span
+          >${{
+            paymentSummary.tax
+          }}</span
+        >
       </div>
       <div
         class="flex justify-between items-center text-sm"
       >
-        <span>Discount</span>
-        <span>$25.00</span>
+        <span
+          >DiscountedTotal</span
+        >
+        <span
+          >${{
+            paymentSummary.discountedTotal
+          }}</span
+        >
+      </div>
+      <div
+        class="flex justify-between items-center text-sm"
+      >
+        <span
+          >DiscountedPrice</span
+        >
+        <span
+          >${{
+            paymentSummary.discountedPrice
+          }}</span
+        >
       </div>
     </div>
 
@@ -58,17 +137,18 @@ const props = defineProps({
       >
       <span
         class="font-bold tracking-wide text-lg"
-        >$25.00</span
+        >${{
+          paymentSummary.finalTotal
+        }}</span
       >
     </div>
-
     <RouterLink
       :to="{
         name: 'checkout',
         query: {
           cartItems:
             JSON.stringify(
-              props.cartItems,
+              props.carts,
             ),
         },
       }"

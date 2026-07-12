@@ -117,18 +117,8 @@ export const cartService = {
   },
 };
 const carts =
-  await cartService.updateCart(
+  await cartService.getAllCartByUser(
     1,
-    [
-      {
-        id: 144,
-        quantity: 4,
-      },
-      {
-        id: 98,
-        quantity: 1,
-      },
-    ],
   );
 
 // 1,
