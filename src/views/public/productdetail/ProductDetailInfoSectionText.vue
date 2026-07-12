@@ -31,14 +31,18 @@ const toast = useToast();
 const { addToCartByUserId } =
   useCartStore();
 const addToCart = async (
-  userId,
+  userId = 1,
   product,
 ) => {
   try {
     const repsonse =
       await addToCartByUserId(
         userId,
-        product,
+        {
+          id: product.id || 1,
+          quantity:
+            props.quantity,
+        },
       );
     if (
       (repsonse &&
@@ -49,11 +53,15 @@ const addToCart = async (
       repsonse.id
     ) {
       toast.success(
-        'Add cart success with product id ',
+        'Add cart success with product title =  ' +
+          props.product
+            .title +
+          `(${props.quantity})`,
       );
     } else {
       toast.error(
-        'Add to cart fails with product id = ',
+        'Add to cart fails with product title = ' +
+          props.product.title,
       );
     }
   } catch (error) {
@@ -173,7 +181,7 @@ const addToCart = async (
           <span
             class="text-base font-semibold text-slate-700 dark:text-indigo-50"
             >{{
-              quantity
+              props.quantity
             }}</span
           >
 
@@ -197,13 +205,21 @@ const addToCart = async (
             />
           </button>
         </div>
-        <TertiaryButton
+
+        <button
           class="flex-1"
+          type="button"
+          @click="
+            addToCart(
+              1,
+              props.product,
+            )
+          "
         >
-          <span @click="">
-            add to cart</span
-          >
-        </TertiaryButton>
+          <TertiaryButton>
+            add to cart
+          </TertiaryButton>
+        </button>
       </div>
       <QuaternaryButton>
         free express delivery

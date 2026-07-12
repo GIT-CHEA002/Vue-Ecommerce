@@ -130,7 +130,7 @@ const carts =
       },
     ],
   );
-console.log(carts.data);
+
 // 1,
 // [
 //   {
