@@ -11,9 +11,6 @@ const props = defineProps({
     default: () => {},
   },
 });
-console.log(
-  toRaw(props.product),
-);
 const addToCart = async (
   userId,
   product,
@@ -49,7 +46,7 @@ const addToCart = async (
 </script>
 <template>
   <div
-    class="bg-white/80 dark:bg-slate-900/85 rounded shadow-sm flex flex-col border-[1.4px] border-indigo-700 overflow-hidden"
+    class="min-w-72 sm:min-w-0 bg-white/80 dark:bg-slate-900/85 rounded shadow-sm flex flex-col border-[1.4px] border-indigo-700 overflow-hidden"
   >
     <!-- image preview -->
     <div class="p-2">

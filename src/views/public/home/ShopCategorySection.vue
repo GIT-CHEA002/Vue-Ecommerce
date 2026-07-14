@@ -2,6 +2,13 @@
 import OverLine from '@/components/shared/OverLine.vue';
 import SectionHeader from '@/components/shared/SectionHeader.vue';
 import { ArrowRightIcon } from '@heroicons/vue/16/solid';
+import ShopCategorySectionCard from './ShopCategorySectionCard.vue';
+const props = defineProps({
+  categoryProduct: {
+    type: Array,
+    default: () => [],
+  },
+});
 </script>
 <template>
   <section
@@ -24,78 +31,17 @@ import { ArrowRightIcon } from '@heroicons/vue/16/solid';
           />
         </RouterLink>
       </div>
+
       <div
-        class="grid grid-cols-1 mt-7 md:grid-cols-3 gap-12 auto-rows-[350px]"
+        class="mt-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-12 auto-rows-[350px]"
       >
-        <div
-          class="relative bg-indigo-100 rounded overflow-hidden"
-        >
-          <img
-            src="https://picsum.photos/1200/450"
-            alt=""
-            class="h-full w-full object-cover"
-          />
-          <div
-            class="absolute bottom-3 p-2"
-          >
-            <h1
-              class="text-white text-xs sm:text-sm md:text-base lg:text-lg font-semibold"
-            >
-              Funiture
-            </h1>
-            <span
-              class="text-xs text-white brightness-110"
-              >Timeless
-              Sillhouettes</span
-            >
-          </div>
-        </div>
-        <div
-          class="relative bg-indigo-100 rounded overflow-hidden"
-        >
-          <img
-            src="https://picsum.photos/1200/450"
-            alt=""
-            class="h-full w-full object-cover"
-          />
-          <div
-            class="absolute bottom-3 p-2"
-          >
-            <h1
-              class="text-white text-xs sm:text-sm md:text-base lg:text-lg font-semibold"
-            >
-              Funiture
-            </h1>
-            <span
-              class="text-xs text-white brightness-110"
-              >Timeless
-              Sillhouettes</span
-            >
-          </div>
-        </div>
-        <div
-          class="relative bg-indigo-100 rounded overflow-hidden"
-        >
-          <img
-            src="https://picsum.photos/1200/450"
-            alt=""
-            class="h-full w-full object-cover"
-          />
-          <div
-            class="absolute bottom-3 p-2"
-          >
-            <h1
-              class="text-white text-xs sm:text-sm md:text-base lg:text-lg font-semibold"
-            >
-              Funiture
-            </h1>
-            <span
-              class="text-xs text-white brightness-110"
-              >Timeless
-              Sillhouettes</span
-            >
-          </div>
-        </div>
+        <ShopCategorySectionCard
+          v-for="(
+            category, index
+          ) in categoryProduct"
+          :key="index"
+          :category="category"
+        />
       </div>
     </div>
   </section>

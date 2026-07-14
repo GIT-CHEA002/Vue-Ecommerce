@@ -136,7 +136,7 @@ export const productService =
           await api.get(
             `/products/category/${category}`,
           );
-        return response.data; 
+        return response.data;
       } catch (error) {
         console.error(
           'Error fetching products by category:',
@@ -145,12 +145,36 @@ export const productService =
         throw error;
       }
     },
+    async getLimitAndSkipProduct(
+      limit,
+      skip,
+    ) {
+      try {
+        if (!limit && !skip) {
+          console.error(
+            'Missing parameter for limit and skips',
+          );
+          throw error;
+        }
+        const response =
+          await api.get(
+            `/products?limit=${limit}&skip=${skip}`,
+          );
+        return response.data;
+      } catch (error) {
+        console.error(
+          'Error occur when fetching products ' +
+            error,
+        );
+        throw error;
+      }
+    },
   };
 
 // test
 // const products =
-//   await productService.getProductCategoryList();
-// console.log(products.data);
+//   await productService.getLimitAndSkipProduct(8,8);
+// console.log(products);
 
 // {
 //       title: 'BMW Poster',

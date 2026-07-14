@@ -5,6 +5,7 @@ import TrendingProductSection from './TrendingProductSection.vue';
 import SearchFormSection from './SearchFormSection.vue';
 import { productService } from '@/services/productService.js';
 import {
+  computed,
   onMounted,
   reactive,
 } from 'vue';
@@ -13,13 +14,45 @@ const state = reactive({
   isLoading: false,
   products: [],
 });
+
+const categoryProduct =
+  computed(() => {
+    const map = new Map();
+
+    state.products.forEach(
+      (product) => {
+        if (
+          !map.has(
+            product.category,
+          )
+        ) {
+          map.set(
+            product.category,
+            {
+              category:
+                product.category,
+              image:
+                product.thumbnail, // or product.images[0]
+              description:
+                product.description,
+            },
+          );
+        }
+      },
+    );
+
+    return [...map.values()];
+  });
 onMounted(async () => {
   state.isLoading = true;
   try {
     const response =
-      await productService.getAllProducts();
+      await productService.getLimitAndSkipProduct(
+        8,
+        8,
+      );
     state.products =
-      response.data.products;
+      response.products || [];
   } catch (error) {
     console.error(
       'Error in fetching product on home page : ' +
@@ -44,13 +77,16 @@ onMounted(async () => {
     <PulseLoader />
   </div>
   <div v-else>
-    <ShopCategorySection />
+    <ShopCategorySection
+      :category-product="
+        categoryProduct
+      "
+    />
     <TrendingProductSection
       :produts="
         state.products || []
       "
     />
   </div>
-
   <SearchFormSection />
 </template>
