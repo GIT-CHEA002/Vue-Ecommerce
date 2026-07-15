@@ -19,9 +19,7 @@ const { fetchCartByUser } =
 const state = reactive({
   isLoading: false,
   carts: computed(
-    () =>
-      cartItem.value
-        ?.carts?.[0],
+    () => cartItem.value[0],
   ),
 });
 onMounted(async () => {

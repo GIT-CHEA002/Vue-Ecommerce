@@ -1,14 +1,34 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import {
+  computed,
+  ref,
+} from 'vue';
 import { cartService } from '@/services/cartService';
 
 // REMOVED: The duplicate 'data' import from 'autoprefixer' which causes a syntax error.
 
 export const useCartStore =
   defineStore('cart', () => {
-    const cartItem =
-      ref(null);
-    const allCart = ref(null);
+    const cartItem = ref([]);
+    const allCart = ref([]);
+    const totalProductQuantity =
+      computed(() => {
+        const cart =
+          cartItem.value[0];
+        if (
+          !cart ||
+          !cart.products
+        )
+          return 0;
+
+        return cart.products.reduce(
+          (sum, item) =>
+            sum +
+            (item.quantity ||
+              0),
+          0,
+        );
+      });
 
     const fetchAllCart =
       async () => {
@@ -32,7 +52,7 @@ export const useCartStore =
               userId,
             );
           cartItem.value =
-            response.data;
+            response.data.carts;
         } catch (error) {
           console.error(
             error,
@@ -106,6 +126,7 @@ export const useCartStore =
     return {
       allCart,
       cartItem,
+      totalProductQuantity,
       fetchAllCart, // Added
       fetchCartByUser,
       deleteCart, // Added

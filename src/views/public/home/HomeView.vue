@@ -14,53 +14,53 @@ const state = reactive({
   isLoading: false,
   products: [],
 });
-
 const categoryProduct =
-  computed(() => {
-    const map = new Map();
-
-    state.products.forEach(
-      (product) => {
-        if (
-          !map.has(
-            product.category,
-          )
-        ) {
-          map.set(
-            product.category,
-            {
-              category:
-                product.category,
-              image:
-                product.thumbnail, // or product.images[0]
-              description:
-                product.description,
-            },
-          );
-        }
-      },
-    );
-
-    return [...map.values()];
-  });
-onMounted(async () => {
-  state.isLoading = true;
-  try {
-    const response =
-      await productService.getLimitAndSkipProduct(
-        8,
-        8,
+  onMounted(async () => {
+    state.isLoading = true;
+    try {
+      const response =
+        await productService.getLimitAndSkipProduct(
+          8,
+          8,
+        );
+      state.products =
+        response.products ||
+        [];
+    } catch (error) {
+      console.error(
+        'Error in fetching product on home page : ' +
+          error,
       );
-    state.products =
-      response.products || [];
-  } catch (error) {
-    console.error(
-      'Error in fetching product on home page : ' +
-        error,
-    );
-  } finally {
-    state.isLoading = false;
-  }
+    } finally {
+      state.isLoading = false;
+    }
+  });
+computed(() => {
+  const map = new Map();
+
+  state.products.forEach(
+    (product) => {
+      if (
+        !map.has(
+          product.category,
+        )
+      ) {
+        map.set(
+          product.category,
+          {
+            category:
+              product.category,
+            image:
+              product.thumbnail, // or product.images[0]
+            description:
+              product.description,
+          },
+        );
+      }
+    },
+  );
+
+  return [...map.values()];
 });
 </script>
 <template>
@@ -79,7 +79,7 @@ onMounted(async () => {
   <div v-else>
     <ShopCategorySection
       :category-product="
-        categoryProduct
+        categoryProduct || []
       "
     />
     <TrendingProductSection

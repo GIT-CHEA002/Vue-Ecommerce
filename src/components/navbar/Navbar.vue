@@ -9,12 +9,18 @@ import {
 } from '@heroicons/vue/16/solid';
 import NavbarLink from './NavbarLink.vue';
 import {
-  onMounted,
+  computed,
   onUpdated,
   ref,
+  toRaw,
+  watch,
+  watchEffect,
 } from 'vue';
 import { useRoute } from 'vue-router';
 import SidebarMobile from './SidebarMobile.vue';
+import { storeToRefs } from 'pinia';
+import { useCartStore } from '@/stores/cartStore.js';
+
 const route = useRoute();
 const isActiveLink = (
   routePath,
@@ -23,7 +29,6 @@ const isActiveLink = (
     route.path === routePath
   );
 };
-
 const theme = useTheme();
 const isSidebarOpen =
   ref(false);
@@ -57,6 +62,26 @@ const links = [
     title: 'Category',
   },
 ];
+const cartStore =
+  useCartStore();
+const {
+  totalProductQuantity,
+} = storeToRefs(cartStore);
+
+const totalQuantity =
+  computed(
+    () =>
+      totalProductQuantity.value,
+  );
+
+// watch(cartItem, () => {
+//   console.log(
+//     toRaw(cartItem.value),
+//   );
+//   console.log(
+//     totalQuantity.value,
+//   );
+// });
 </script>
 <template>
   <nav
@@ -113,7 +138,9 @@ const links = [
             />
             <span
               class="text-[8px] text-white text-center rounded-full absolute -top-2 right-0 bg-indigo-700 w-3 h-3"
-              >1</span
+              >{{
+                totalQuantity
+              }}</span
             >
           </RouterLink>
         </div>

@@ -5,11 +5,10 @@ const props = defineProps({
     default: () => {},
   },
 });
-console.log(props.category);
 </script>
 <template>
   <div
-    class="relative cursor-pointer bg-indigo-100 rounded overflow-hidden"
+    class="relative cursor-pointer bg-indigo-200 rounded overflow-hidden"
   >
     <img
       :src="
@@ -19,7 +18,7 @@ console.log(props.category);
       class="h-full w-full object-cove blur-[0.5px] hover:blur-0"
     />
     <div
-      class="absolute bottom-3 p-3  md:p-6"
+      class="absolute bottom-3 p-3 text-slate-900 md:p-6"
     >
       <h1
         class="capitalize md:text-lg lg:text-xl font-semibold"
