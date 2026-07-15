@@ -5,10 +5,10 @@ import {
 import MainLayout from '@/layout/MainLayout.vue';
 import HomeView from '@/views/public/home/HomeView.vue';
 import AuthLayout from '@/layout/AuthLayout.vue';
-import LoginView from '@/views/auth/LoginView.vue';
+import LoginView from '@/views/auth/login/LoginView.vue';
 import ProductsView from '@/views/public/product/ProductsView.vue';
 import CheckoutLayout from '@/layout/CheckoutLayout.vue';
-import RegisterView from '@/views/auth/RegisterView.vue';
+import RegisterView from '@/views/auth/register/RegisterView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 import CategoryView from '@/views/public/category/CategoryView.vue';
 import ProductDetailView from '@/views/public/productdetail/ProductDetailView.vue';

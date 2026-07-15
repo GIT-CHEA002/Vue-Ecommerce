@@ -12,7 +12,6 @@ import {
     <div
       class="grid text-start md:text-center lg:text-start grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
     >
-    
       <div class="block">
         <RouterLink
           to="/"

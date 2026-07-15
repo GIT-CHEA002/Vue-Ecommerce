@@ -1,6 +1,10 @@
+import api from '@/services/apiService';
 import { authService } from '@/services/authService';
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
+import {
+  computed,
+  ref,
+} from 'vue';
 
 export const useUserStore =
   defineStore('user', () => {
@@ -8,7 +12,15 @@ export const useUserStore =
       {},
     );
     const allUser = ref([]);
-
+    const isLoggedIn =
+      computed(() => {
+        return (
+          currentUser.value &&
+          Object.keys(
+            currentUser.value,
+          ).length > 0
+        );
+      });
     const loginUser = async (
       username,
       password,
@@ -19,7 +31,6 @@ export const useUserStore =
             username,
             password,
           );
-
         if (
           response &&
           (response.status ===
@@ -78,15 +89,30 @@ export const useUserStore =
           return false;
         }
       };
-    const isLoggedIn =
-      computed(() => {
-        return (
-          currentUser.value &&
-          Object.keys(
-            currentUser.value,
-          ).length > 0
-        );
-      });
+    const registerUser =
+      async (data) => {
+        try {
+          const response =
+            await authService.registerUser(
+              data,
+            );
+          if (
+            (response &&
+              response.status ===
+                201) ||
+            response.status ===
+              200
+          ) {
+            return true;
+          }
+          return false;
+        } catch (error) {
+          console.error(
+            'Error : ' +
+              error,
+          );
+        }
+      };
 
     return {
       currentUser,
@@ -94,5 +120,6 @@ export const useUserStore =
       isLoggedIn,
       loginUser,
       getAllUser,
+      registerUser,
     };
   });

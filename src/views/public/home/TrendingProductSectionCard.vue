@@ -1,7 +1,10 @@
 <script setup>
-import { toRaw } from 'vue';
 import { useCartStore } from '@/stores/cartStore';
 import { useToast } from 'vue-toastification';
+import { useUserStore } from '@/stores/userStore';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const { addToCartByUserId } =
   useCartStore();
 const toast = useToast();
@@ -11,10 +14,30 @@ const props = defineProps({
     default: () => {},
   },
 });
+
+const userStore =
+  useUserStore();
+const { isLoggedIn } =
+  storeToRefs(userStore);
 const addToCart = async (
   userId,
   product,
 ) => {
+  if (!isLoggedIn.value) {
+    toast.info(
+      'Please login or register first ',
+    );
+    if (
+      confirm(
+        'You need to login first. Go to the login page?',
+      )
+    ) {
+      router.push(
+        '/auth/login',
+      );
+    }
+    return;
+  }
   try {
     const response =
       await addToCartByUserId(
@@ -95,6 +118,7 @@ const addToCart = async (
             quantity: 1,
           })
         "
+        class="w-full"
       >
         Add To Cart
       </button>

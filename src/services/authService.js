@@ -50,15 +50,33 @@ export const authService = {
     }
   },
   async authUser() {},
-  async registerUser() {},
+  async registerUser(data) {
+    try {
+      const response =
+        await api.post(
+          '/users/add',
+          data,
+        );
+      return response;
+    } catch (error) {
+      console.error(
+        'Error : ' + error,
+      );
+    }
+  },
   async deleteUserFromList() {},
 };
 
 // const response =
-//   await authService.loginUser(
-//     'addisonw',
-//     'addisonwpass',
+//   await authService.registerUser(
+//     {
+//       firstname: 'John',
+//       lastname: 'Doe',
+//       email:
+//         'john.doe@example.com',
+//       password:
+//         'SecurePass123!',
+//       phone: '+855123456789', // Cambodia example number
+//     },
 //   );
-// console.log(
-//   response.data.accessToken,
-// );
+// console.log(response.data);
