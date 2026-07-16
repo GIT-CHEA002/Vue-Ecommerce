@@ -26,8 +26,8 @@ defineProps({
       isActiveLink(
         target.trim(),
       )
-        ? 'border-l-2 bg-indigo-50 dark:bg-white/5 border-indigo-700 dark:border-indigo-300   text-indigo-700 dark:text-indigo-500 '
-        : 'hover:text-indigo-700/90 hover:bg-indigo-50 dark:hover:bg-white/5 hover:border-l-2 hover:border-indigo-700 dark:hover:border-indigo-300  dark:hover:text-indigo-500/90 ',
+        ? 'border-l-2 bg-indigo-50 dark:bg-white/5 border-indigo-700 dark:border-indigo-500   text-indigo-700 dark:text-indigo-500 '
+        : 'hover:text-indigo-700/90 hover:bg-indigo-50 dark:hover:bg-white/5 hover:border-l-2 hover:border-indigo-700 dark:hover:border-indigo-500  dark:hover:text-indigo-500/90 ',
     ]"
   >
     {{ title }}

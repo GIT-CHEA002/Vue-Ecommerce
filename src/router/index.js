@@ -17,6 +17,7 @@ import CartView from '@/views/auth/cart/CartView.vue';
 import CheckoutView from '@/views/auth/checkout/CheckoutView.vue';
 import PaymentMethodView from '@/views/auth/paymentmethod/PaymentMethodView.vue';
 import FinalReviewView from '@/views/auth/finalreview/FinalReviewView.vue';
+import ProfileView from '@/views/account/ProfileView.vue';
 
 const router = createRouter({
   history: createWebHistory(
@@ -98,6 +99,20 @@ const router = createRouter({
             pageLogo:
               '/checkout.png',
             requiresAuth: true,
+            role: 'customer',
+          },
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          component:
+            ProfileView,
+          meta: {
+            title:
+              'My Profile',
+            requiresAuth: true,
+            pageLogo:
+              '/chekcout.png',
             role: 'customer',
           },
         },

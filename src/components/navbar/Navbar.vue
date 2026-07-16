@@ -20,7 +20,8 @@ import { useRoute } from 'vue-router';
 import SidebarMobile from './SidebarMobile.vue';
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '@/stores/cartStore.js';
-
+import { UserIcon } from '@heroicons/vue/24/solid';
+import { useUserStore } from '@/stores/userStore.js';
 const route = useRoute();
 const isActiveLink = (
   routePath,
@@ -73,6 +74,10 @@ const totalQuantity =
     () =>
       totalProductQuantity.value,
   );
+const userStore =
+  useUserStore();
+const { isLoggedIn } =
+  storeToRefs(userStore);
 
 // watch(cartItem, () => {
 //   console.log(
@@ -82,6 +87,7 @@ const totalQuantity =
 //     totalQuantity.value,
 //   );
 // });
+
 </script>
 <template>
   <nav
@@ -128,6 +134,9 @@ const totalQuantity =
         </RouterLink>
         <!-- Cart -->
         <div
+          v-if="
+            isLoggedIn.value
+          "
           class="relative cursor-pointer"
         >
           <RouterLink
@@ -165,6 +174,18 @@ const totalQuantity =
             class="w-6 h-6 text-indigo-700 dark:text-indigo-500"
           />
         </button>
+        <RouterLink
+          to="/profile"
+          class="flex items-center gap-0.5 text-indigo-700 dark:text-indigo-500 border border-indigo-700 p-0.5 rounded-sm"
+        >
+          <span
+            class="text-xs font-medium"
+            >Profile</span
+          >
+          <UserIcon
+            class="w-6 h-6"
+          />
+        </RouterLink>
         <!-- toggle sidbars -->
         <button
           @click="
