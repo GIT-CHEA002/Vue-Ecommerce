@@ -6,6 +6,9 @@ const props = defineProps({
   activeProfileLinkTab: {
     type: String,
   },
+  isShowFullMobileSidebar: {
+    type: Boolean,
+  },
 });
 const emit = defineEmits([
   'setActiveProfileLinkTab',
@@ -20,7 +23,7 @@ const emit = defineEmits([
       )
     "
     :class="[
-      'cursor-pointer rounded py-2 px-4 flex justify-start items-center gap-1 tracking-wide transition-all duration-300',
+      'cursor-pointer rounded w-fit md:w-auto py-2 px-4  flex justify-start items-center gap-1 tracking-wide transition-all duration-300',
       props.activeProfileLinkTab ===
       props.tab.target.trim()
         ? 'border-l-2 bg-indigo-100/95 dark:bg-slate-900 border-indigo-700 dark:border-indigo-500 text-indigo-700 dark:text-indigo-500'
@@ -29,10 +32,23 @@ const emit = defineEmits([
   >
     <component
       :is="props.tab.icon"
-      class="w-5 h-5"
+      class="md:w-5 md:h-5 w-4 h-4"
     />
-    <span>{{
-      props.tab.title
-    }}</span>
+    <div
+      :class="[
+        'grid transition-all duration-300 ease-in-out',
+        'md:grid-cols-[1fr] md:ml-2',
+        props.isShowFullMobileSidebar
+          ? 'grid-cols-[1fr] ml-2'
+          : 'grid-cols-[0fr] ml-0',
+      ]"
+    >
+      <!-- The actual text inner-container -->
+      <span
+        class="overflow-hidden whitespace-nowrap text-xs tracking-wide sm:text-base"
+      >
+        {{ props.tab.title }}
+      </span>
+    </div>
   </li>
 </template>

@@ -7,6 +7,7 @@ import {
   ShieldCheckIcon,
   UserCircleIcon,
 } from '@heroicons/vue/24/solid';
+import ProfileContentSection from './ProfileContentSection.vue';
 const profileSidebarlinks = [
   {
     target: 'profile',
@@ -44,7 +45,6 @@ const setActiveProfileLinkTab =
   <div
     class="max-w-7xl px-4 sm:px-8 md:px-12 py-4 md:py-6 h-screen"
   >
-    <h1>Profile page</h1>
     <div
       class="h-[400px] flex justify-between items-start"
     >
@@ -59,9 +59,11 @@ const setActiveProfileLinkTab =
           setActiveProfileLinkTab
         "
       />
-      <main
-        class="flex-1 h-full bg-blue-400"
-      ></main>
+      <ProfileContentSection
+        :active-profile-link-tab="
+          activeProfileLinkTab
+        "
+      />
     </div>
   </div>
 </template>

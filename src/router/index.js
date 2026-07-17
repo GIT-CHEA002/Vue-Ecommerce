@@ -112,7 +112,7 @@ const router = createRouter({
               'My Profile',
             requiresAuth: true,
             pageLogo:
-              '/chekcout.png',
+              '/profile.png',
             role: 'customer',
           },
         },
