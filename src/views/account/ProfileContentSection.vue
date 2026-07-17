@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 <template>
   <main
-    class="flex-1 h-full p-12"
+    class="flex-1 h-full "
   >
     <!-- profiles -->
     <ProfileContentSectionProfile

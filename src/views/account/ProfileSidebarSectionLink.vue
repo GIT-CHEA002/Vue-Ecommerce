@@ -23,7 +23,7 @@ const emit = defineEmits([
       )
     "
     :class="[
-      'cursor-pointer rounded w-fit md:w-auto py-2 px-4  flex justify-start items-center gap-1 tracking-wide transition-all duration-300',
+      'cursor-pointer rounded w-full py-2 px-4  flex justify-start items-center gap-1 tracking-wide transition-all duration-300',
       props.activeProfileLinkTab ===
       props.tab.target.trim()
         ? 'border-l-2 bg-indigo-100/95 dark:bg-slate-900 border-indigo-700 dark:border-indigo-500 text-indigo-700 dark:text-indigo-500'
@@ -36,7 +36,7 @@ const emit = defineEmits([
     />
     <div
       :class="[
-        'grid transition-all duration-300 ease-in-out',
+        ' w-auto grid transition-all duration-300 ease-in-out',
         'md:grid-cols-[1fr] md:ml-2',
         props.isShowFullMobileSidebar
           ? 'grid-cols-[1fr] ml-2'

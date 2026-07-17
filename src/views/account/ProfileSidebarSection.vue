@@ -28,6 +28,7 @@ const toggleIsShowFullMobileSidebar =
         !isShowFullMobileSidebar.value;
     }
   };
+// handle size when window change
 const handleResize = () => {
   // tailwinds md breakpoint = 768px
   isMobile.value =
@@ -36,6 +37,7 @@ const handleResize = () => {
     isShowFullMobileSidebar.value = false;
   }
 };
+// add event listener to window for setting the state of is mobile and mobilesidebars
 onMounted(() => {
   handleResize();
   window.addEventListener(
@@ -95,7 +97,7 @@ onMounted(() => {
         @click="
           toggleIsShowFullMobileSidebar()
         "
-        class="flex md:hidden items-center py-2"
+        class="flex md:hidden items-center py-2 text-indigo-700 dark:text-indigo-500 ms-0.5"
       >
         <ArrowLeftEndOnRectangleIcon
           v-if="
