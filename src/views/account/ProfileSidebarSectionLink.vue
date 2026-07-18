@@ -1,54 +1,35 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
 const props = defineProps({
-  tab: {
-    type: Object,
-  },
   activeProfileLinkTab: {
     type: String,
   },
-  isShowFullMobileSidebar: {
-    type: Boolean,
+  tab: {
+    type: Object,
+    required: true,
   },
 });
-const emit = defineEmits([
-  'setActiveProfileLinkTab',
-]);
 </script>
 <template>
   <li
-    @click="
-      $emit(
-        'setActiveProfileLinkTab',
-        props.tab.target,
-      )
-    "
     :class="[
-      'cursor-pointer rounded w-full py-2 px-4  flex justify-start items-center gap-1 tracking-wide transition-all duration-300',
+      'cursor-pointer rounded w-full py-2 px-1.5 sm:px-2 md:px-4 flex justify-start items-center gap-1 tracking-wide transition-all duration-300',
       props.activeProfileLinkTab ===
-      props.tab.target.trim()
+      tab.target
         ? 'border-l-2 bg-indigo-100/95 dark:bg-slate-900 border-indigo-700 dark:border-indigo-500 text-indigo-700 dark:text-indigo-500'
-        : 'text-slate-700  hover:border-l-2 hover:bg-indigo-100 hover:dark:bg-slate-900/90 hover:border-indigo-700/90 hover:dark:border-indigo-500/90  hover:text-indigo-700 dark:text-indigo-500',
+        : 'text-slate-700 hover:border-l-2 hover:bg-indigo-100 hover:dark:bg-slate-900/90 hover:border-indigo-700/90 hover:dark:border-indigo-500/90 hover:text-indigo-700 dark:text-indigo-500',
     ]"
   >
-    <component
-      :is="props.tab.icon"
-      class="md:w-5 md:h-5 w-4 h-4"
-    />
-    <div
-      :class="[
-        ' w-auto grid transition-all duration-300 ease-in-out',
-        'md:grid-cols-[1fr] md:ml-2',
-        props.isShowFullMobileSidebar
-          ? 'grid-cols-[1fr] ml-2'
-          : 'grid-cols-[0fr] ml-0',
-      ]"
+    <RouterLink
+      :to="`/profile?tab=${tab.target}`"
+      class="flex items-center gap-2 w-full text-sm"
     >
-      <!-- The actual text inner-container -->
-      <span
-        class="overflow-hidden whitespace-nowrap text-xs tracking-wide sm:text-base"
-      >
-        {{ props.tab.title }}
-      </span>
-    </div>
+      <component
+        :is="tab.icon"
+        class="w-3 h-3 md:w-5 md:h-5 sm:w-4 sm:h-4"
+      />
+      {{ tab.title }}
+    </RouterLink>
   </li>
 </template>

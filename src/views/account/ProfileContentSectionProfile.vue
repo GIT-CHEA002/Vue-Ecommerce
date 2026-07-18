@@ -9,7 +9,6 @@ import { UserCircleIcon } from '@heroicons/vue/24/solid';
       class="text-xl font-medium tracking-wide capitalize"
     >
       Personal Infomation
-      (Profile tabs)
     </h1>
     <p
       class="text-sm opacity-75"
@@ -22,7 +21,7 @@ import { UserCircleIcon } from '@heroicons/vue/24/solid';
     >
       <!-- image sections -->
       <div
-        class="relative z-40 w-[100px] h-[100px] bg-blue-700 rounded-full cursor-pointer overflow-hidden"
+        class="relative w-[70px] h-[70px] md:w-[100px] md:h-[100px] bg-blue-700 rounded-full cursor-pointer overflow-hidden"
       >
         <img
           src="https://picsum.photos/id/91/200/200"
@@ -70,7 +69,7 @@ import { UserCircleIcon } from '@heroicons/vue/24/solid';
         class="space-y-4"
       >
         <div
-          class="flex justify-between gap-6 items-center"
+          class=" space-y-5 md:space-y-0 md:flex justify-between gap-6 items-center"
         >
           <div
             class="flex-1 relative space-y-1"

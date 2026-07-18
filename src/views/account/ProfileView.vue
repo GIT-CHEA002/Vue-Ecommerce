@@ -1,5 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import {
+  computed,
+  ref,
+} from 'vue';
 import ProfileSidebarSection from './ProfileSidebarSection.vue';
 import {
   BookOpenIcon,
@@ -8,6 +11,7 @@ import {
   UserCircleIcon,
 } from '@heroicons/vue/24/solid';
 import ProfileContentSection from './ProfileContentSection.vue';
+import { useRoute } from 'vue-router';
 const profileSidebarlinks = [
   {
     target: 'profile',
@@ -30,10 +34,12 @@ const profileSidebarlinks = [
     icon: HeartIcon,
   },
 ];
+const route = useRoute();
 const activeProfileLinkTab =
-  ref(
-    profileSidebarlinks[0]
-      .target,
+  computed(
+    () =>
+      route.query.tab ||
+      'profile',
   );
 const setActiveProfileLinkTab =
   (tab) => {
@@ -43,10 +49,10 @@ const setActiveProfileLinkTab =
 </script>
 <template>
   <div
-    class="max-w-7xl px-4 sm:px-8 md:px-12 py-4 md:py-6 h-screen"
+    class="max-w-7xl px-4 sm:px-8 md:px-12 py-4 md:py-6 h-fit"
   >
     <div
-      class="h-[400px] flex justify-between items-start"
+      class="h-fit flex justify-between items-start gap-5"
     >
       <ProfileSidebarSection
         :active-profile-link-tab="
@@ -54,9 +60,6 @@ const setActiveProfileLinkTab =
         "
         :profile-sidebarlinks="
           profileSidebarlinks
-        "
-        @set-active-profile-link-tab="
-          setActiveProfileLinkTab
         "
       />
       <ProfileContentSection

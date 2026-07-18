@@ -20,13 +20,21 @@ import { useRoute } from 'vue-router';
 import SidebarMobile from './SidebarMobile.vue';
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '@/stores/cartStore.js';
-import { UserIcon } from '@heroicons/vue/24/solid';
 import { useUserStore } from '@/stores/userStore.js';
+import {
+  SparklesIcon,
+  ShoppingBagIcon,
+  EnvelopeIcon,
+  Squares2X2Icon,
+  UserIcon,
+} from '@heroicons/vue/24/outline';
 const route = useRoute();
 const isActiveLink = (
   routePath,
 ) => {
   return (
+    route.fullPath ===
+      routePath ||
     route.path === routePath
   );
 };
@@ -45,24 +53,67 @@ onUpdated(() => {
     isSidebarOpen.value = false;
   }
 });
+
 const links = [
   {
     target: '/',
     title: 'New arrivals',
+    icon: SparklesIcon,
   },
   {
     target: '/products',
     title: 'Product',
+    icon: ShoppingBagIcon,
   },
   {
     target: '/contact',
     title: 'Contact',
+    icon: EnvelopeIcon,
   },
   {
     target: '/category',
     title: 'Category',
+    icon: Squares2X2Icon,
+  },
+  {
+    title: 'Profile',
+    icon: UserIcon,
+    subTab: [
+      {
+        target:
+          '/profile?tab=profile',
+        title: 'Profile Info',
+      },
+      {
+        target:
+          '/profile?tab=orders',
+        title: 'Orders',
+      },
+      {
+        target:
+          '/profile?tab=wishlist',
+        title: 'Wishlist',
+      },
+      {
+        target:
+          '/profile?tab=security',
+        title: 'Security',
+      },
+    ],
   },
 ];
+const desktopLinks = computed(
+  () => {
+    return links.filter(
+      (link) =>
+        link.target !=
+        '/profile',
+    );
+  },
+);
+const mobileLinks = computed(
+  () => links,
+);
 const cartStore =
   useCartStore();
 const {
@@ -87,7 +138,6 @@ const { isLoggedIn } =
 //     totalQuantity.value,
 //   );
 // });
-
 </script>
 <template>
   <nav
@@ -110,7 +160,7 @@ const { isLoggedIn } =
         class="flex-1 hidden md:flex items-center justify-center space-x-8"
       >
         <NavbarLink
-          v-for="item in links"
+          v-for="item in desktopLinks"
           :key="item"
           :is-active-link="
             isActiveLink
@@ -200,12 +250,14 @@ const { isLoggedIn } =
       </div>
       <!-- mobile menu -->
       <SidebarMobile
-        :links="links"
-        :toggle-siebar-open="
-          toggleSiebarOpen
+        :mobile-links="
+          mobileLinks
         "
         :is-sidebar-open="
           isSidebarOpen
+        "
+        @toggle-sidebar-open="
+          toggleSiebarOpen
         "
         :is-active-link="
           isActiveLink

@@ -2,21 +2,21 @@
 import { XMarkIcon } from '@heroicons/vue/16/solid';
 import NavLinkMobile from './NavLinkMobile.vue';
 import ToggleThemeButtonMobile from './ToggleThemeButtonMobile.vue';
-defineProps({
+const props = defineProps({
   isSidebarOpen: {
     type: Boolean,
-  },
-  links: {
-    type: Array,
-    default: () => [],
-  },
-  toggleSiebarOpen: {
-    type: Function,
   },
   isActiveLink: {
     type: Function,
   },
+  mobileLinks: {
+    type: Array,
+    default: () => [],
+  },
 });
+const emit = defineEmits([
+  'toggleSidebarOpen',
+]);
 </script>
 <template>
   <Transition
@@ -28,8 +28,10 @@ defineProps({
     leave-active-class="transition-tranform duration-500 ease-in"
   >
     <div
-      v-if="isSidebarOpen"
-      class="fixed right-0 top-0 h-screen w-[300px] bg-white dark:bg-slate-900 z-50 shadow-xl border-l flex flex-col"
+      v-if="
+        props.isSidebarOpen
+      "
+      class="fixed right-0 top-0 h-screen overflow-scroll [&::-webkit-scrollbar]:hidden w-[300px] bg-white dark:bg-slate-900 z-50 shadow-xl border-l flex flex-col"
     >
       <div
         class="flex items-center justify-between p-4 pb-4 border-b"
@@ -41,7 +43,10 @@ defineProps({
         </h1>
         <button
           @click="
-            toggleSiebarOpen
+            $emit(
+              'toggleSidebarOpen',
+              $event,
+            )
           "
         >
           <XMarkIcon
@@ -53,21 +58,21 @@ defineProps({
         class="flex-1 flex flex-col p-4"
       >
         <div
-          class="flex-1 space-y-10"
+          class="flex-1 space-y-6"
         >
           <NavLinkMobile
-            v-for="item in links"
-            :target="
-              item.target
-            "
-            :title="
-              item.title
+            v-for="link in props.mobileLinks"
+            :mobile-link="
+              link
             "
             :is-active-link="
-              isActiveLink
+              props.isActiveLink
             "
-            :toggle-siebar-open="
-              toggleSiebarOpen
+            @toggle-sidebar-open="
+              $emit(
+                'toggleSidebarOpen',
+                $event,
+              )
             "
           />
         </div>
