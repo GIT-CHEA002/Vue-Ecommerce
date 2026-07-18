@@ -106,8 +106,8 @@ const desktopLinks = computed(
   () => {
     return links.filter(
       (link) =>
-        link.target !=
-        '/profile',
+        link.title !=
+        'Profile',
     );
   },
 );
