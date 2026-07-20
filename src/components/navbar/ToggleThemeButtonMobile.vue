@@ -1,13 +1,21 @@
 <script setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { MoonIcon } from '@heroicons/vue/24/solid';
 import { useTheme } from '@/stores/theme';
 import { SunIcon } from '@heroicons/vue/16/solid';
+import Switch from '../shared/button/Switch.vue';
+
 const theme = useTheme();
-const isDark = ref(
-  theme.theme === 'dark',
-);
+
+// Use a writeable computed property to sync your Switch directly with Pinia
+const isDark = computed({
+  get: () =>
+    theme.theme === 'dark',
+  set: () =>
+    theme.toggleTheme(),
+});
 </script>
+
 <template>
   <div
     class="flex items-center justify-between w-full max-w-xs p-4 bg-indigo-50 dark:bg-white/5 rounded-xl select-none"
@@ -36,23 +44,8 @@ const isDark = ref(
       </span>
     </div>
 
-    <label
-      class="relative inline-flex items-center cursor-pointer"
-    >
-      <input
-        type="checkbox"
-        @change="
-          theme.toggleTheme()
-        "
-        v-model="isDark"
-        class="sr-only peer focus:outline-none"
-      />
-      <div
-        class="w-14 h-7 bg-slate-800 peer-focus:outline-none rounded-full peer-checked:bg-indigo-950/40 peer-checked:border-indigo-400/30 transition-all duration-300"
-      ></div>
-      <div
-        class="absolute left-1 top-1 w-5 h-5 bg-indigo-300 rounded-full transition-all duration-300 peer-checked:translate-x-7"
-      ></div>
-    </label>
+    <Switch
+      v-model="isDark"
+    />
   </div>
 </template>

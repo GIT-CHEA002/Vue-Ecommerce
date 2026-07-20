@@ -15,7 +15,7 @@ import { UserCircleIcon } from '@heroicons/vue/24/solid';
         Personal Infomation
       </h1>
       <p
-        class="text-sm opacity-75"
+        class="text-xs opacity-75"
       >
         Update your photo and
         personal details here.
