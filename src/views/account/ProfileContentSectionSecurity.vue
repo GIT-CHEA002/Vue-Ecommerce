@@ -1,14 +1,9 @@
 <script setup>
-import PrimaryButton from '@/components/shared/button/PrimaryButton.vue';
-import QuaternaryButton from '@/components/shared/button/QuaternaryButton.vue';
-import SecondaryButton from '@/components/shared/button/SecondaryButton.vue';
 import Switch from '@/components/shared/button/Switch.vue';
-import TertiaryButton from '@/components/shared/button/TertiaryButton.vue';
 import { ShieldCheckIcon } from '@heroicons/vue/24/outline';
 import { ref } from 'vue';
 const isTwoFactor =
   ref(false);
-console.log(isTwoFactor);
 </script>
 <template>
   <section
@@ -147,13 +142,13 @@ console.log(isTwoFactor);
         >
           <button
             @click="() => {}"
-            class=" px-4 md:px-8 py-2 text-xs font-medium border border-slate-300 dark:border-white/20 rounded text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 active:scale-95 transition-all duration-300"
+            class="px-4 md:px-8 py-2 text-xs font-medium border border-slate-300 dark:border-white/20 rounded text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 active:scale-95 transition-all duration-300"
           >
             Cancel Changes
           </button>
           <button
             @click="() => {}"
-            class=" px-4 md:px-8 py-2 text-xs font-medium rounded bg-indigo-700 hover:bg-indigo-600 active:bg-indigo-800 text-indigo-50 shadow-sm active:scale-95 transition-all duration-300"
+            class="px-4 md:px-8 py-2 text-xs font-medium rounded bg-indigo-700 hover:bg-indigo-600 active:bg-indigo-800 text-indigo-50 shadow-sm active:scale-95 transition-all duration-300"
           >
             Save Changes
           </button>

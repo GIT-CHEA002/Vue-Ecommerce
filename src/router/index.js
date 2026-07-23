@@ -19,6 +19,11 @@ import PaymentMethodView from '@/views/auth/paymentmethod/PaymentMethodView.vue'
 import FinalReviewView from '@/views/auth/finalreview/FinalReviewView.vue';
 import ProfileView from '@/views/account/ProfileView.vue';
 
+// Admin Imports
+import AdminLayout from '@/layout/AdminLayout.vue';
+import AdminDashboardView from '@/views/admin/AdminDashboardView.vue';
+import AdminProductView from '@/views/admin/AdminProductView.vue';
+
 const router = createRouter({
   history: createWebHistory(
     import.meta.env.BASE_URL,
@@ -116,54 +121,6 @@ const router = createRouter({
             role: 'customer',
           },
         },
-
-        // Future Customer Routes
-        /*
-        {
-          path: 'wishlist',
-          name: 'wishlist',
-          component: WishlistView,
-          meta: {
-            title: 'Wishlist',
-            requiresAuth: true,
-            role: 'customer',
-          },
-        },
-        {
-          path: 'profile',
-          name: 'profile',
-          component: ProfileView,
-          meta: {
-            title: 'My Profile',
-            requiresAuth: true,
-            role: 'customer',
-          },
-        },
-        */
-
-        // Future Admin Routes
-        /*
-        {
-          path: 'administration',
-          name: 'admin-dashboard',
-          component: AdminDashboardView,
-          meta: {
-            title: 'Admin Dashboard',
-            requiresAuth: true,
-            role: 'admin',
-          },
-        },
-        {
-          path: 'administration/products',
-          name: 'admin-products',
-          component: AdminProductsView,
-          meta: {
-            title: 'Manage Products',
-            requiresAuth: true,
-            role: 'admin',
-          },
-        },
-        */
       ],
     },
     // Auth Layout
@@ -202,7 +159,6 @@ const router = createRouter({
     // Checkout Layout
     {
       path: '/payment',
-      // main layout for the checkout layout and the process of payment
       component:
         CheckoutLayout,
       children: [
@@ -250,6 +206,65 @@ const router = createRouter({
         },
       ],
     },
+    // Admin Layout
+    {
+      path: '/administration',
+      component: AdminLayout,
+      meta: {
+        requiresAuth: true,
+        role: 'admin',
+      },
+      children: [
+        {
+          path: 'dashboard',
+          name: 'admin-dashboard',
+          component:
+            AdminDashboardView,
+          meta: {
+            title:
+              'Admin - Dashboard',
+            pageLogo:
+              '/login.png',
+          },
+        },
+        {
+          path: 'products',
+          name: 'admin-products',
+          component:
+            AdminProductView,
+          meta: {
+            title:
+              'Admin - Products',
+            pageLogo:
+              '/product.png',
+          },
+        },
+        // {
+        //   path: 'cart',
+        //   name: 'admin-cart',
+        //   component:
+        //     AdminCartView,
+        //   meta: {
+        //     title:
+        //       'Admin - Cart Configuration',
+        //     pageLogo:
+        //       '/checkout.png',
+        //   },
+        // },
+        // {
+        //   path: 'orders',
+        //   name: 'admin-orders',
+        //   component:
+        //     AdminOrdersView,
+        //   meta: {
+        //     title:
+        //       'Admin - Orders Management',
+        //     pageLogo:
+        //       '/checkout.png',
+        //   },
+        // },
+      ],
+    },
 
     // 404
     {
@@ -270,6 +285,7 @@ const router = createRouter({
     }
   },
 });
+
 router.afterEach((to) => {
   document.title =
     to.meta.title ||

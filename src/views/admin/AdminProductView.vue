@@ -1,4 +1,4 @@
 <script setup></script>
 <template>
-  <h1>This is dashboard</h1>
+  <h1>Admin product views </h1>
 </template>
