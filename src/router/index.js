@@ -22,7 +22,10 @@ import ProfileView from '@/views/account/ProfileView.vue';
 // Admin Imports
 import AdminLayout from '@/layout/AdminLayout.vue';
 import AdminDashboardView from '@/views/admin/AdminDashboardView.vue';
-import AdminProductView from '@/views/admin/AdminProductView.vue';
+import AdminProfileView from '@/views/admin/AdminProfileView.vue';
+import AdminOrdersView from '@/views/admin/AdminOrdersView.vue';
+import AdminWishListView from '@/views/admin/AdminWishListView.vue';
+import AdminSettingView from '@/views/admin/AdminSettingView.vue';
 
 const router = createRouter({
   history: createWebHistory(
@@ -30,7 +33,7 @@ const router = createRouter({
   ),
 
   routes: [
-    // Main Layout
+    // Main Layout (Public & Customer Routes)
     {
       path: '/',
       component: MainLayout,
@@ -72,7 +75,7 @@ const router = createRouter({
         },
         {
           path: 'contact',
-          name: 'Contact - page',
+          name: 'contact-page',
           component:
             ContactView,
           meta: {
@@ -84,7 +87,7 @@ const router = createRouter({
         },
         {
           path: 'category',
-          name: 'Category - page',
+          name: 'category-page',
           component:
             CategoryView,
           meta: {
@@ -96,7 +99,7 @@ const router = createRouter({
         },
         {
           path: 'cart',
-          name: 'cart',
+          name: 'customer-cart',
           component: CartView,
           meta: {
             title:
@@ -109,7 +112,7 @@ const router = createRouter({
         },
         {
           path: 'profile',
-          name: 'profile',
+          name: 'customer-profile', // Unique name fixed
           component:
             ProfileView,
           meta: {
@@ -228,44 +231,55 @@ const router = createRouter({
           },
         },
         {
-          path: 'products',
-          name: 'admin-products',
+          path: 'profile',
+          name: 'admin-profile', // Unique name fixed
           component:
-            AdminProductView,
+            AdminProfileView,
           meta: {
             title:
-              'Admin - Products',
+              'Admin - profile',
             pageLogo:
               '/product.png',
           },
         },
-        // {
-        //   path: 'cart',
-        //   name: 'admin-cart',
-        //   component:
-        //     AdminCartView,
-        //   meta: {
-        //     title:
-        //       'Admin - Cart Configuration',
-        //     pageLogo:
-        //       '/checkout.png',
-        //   },
-        // },
-        // {
-        //   path: 'orders',
-        //   name: 'admin-orders',
-        //   component:
-        //     AdminOrdersView,
-        //   meta: {
-        //     title:
-        //       'Admin - Orders Management',
-        //     pageLogo:
-        //       '/checkout.png',
-        //   },
-        // },
+        {
+          path: 'orders',
+          name: 'admin-orders',
+          component:
+            AdminOrdersView,
+          meta: {
+            title:
+              'Admin - Orders',
+            pageLogo:
+              '/product.png',
+          },
+        },
+        {
+          path: 'wishlist',
+          name: 'admin-wishlist', // Unique name fixed
+          component:
+            AdminWishListView,
+          meta: {
+            title:
+              'Admin - Cart Configuration',
+            pageLogo:
+              '/checkout.png',
+          },
+        },
+        {
+          path: 'settings',
+          name: 'admin-settings', // Unique name fixed
+          component:
+            AdminSettingView,
+          meta: {
+            title:
+              'Admin - Cart Configuration',
+            pageLogo:
+              '/checkout.png',
+          },
+        },
       ],
     },
-
     // 404
     {
       path: '/:pathMatch(.*)*',

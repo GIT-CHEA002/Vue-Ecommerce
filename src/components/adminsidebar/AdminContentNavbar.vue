@@ -13,7 +13,7 @@ const theme = useTheme();
 </script>
 <template>
   <nav
-    class="py-4 md:py-6 px-12 flex justify-between items-center border-b border-indigo-700 dark:border-indigo-500 shadow-sm"
+    class="py-8 md:py-6 px-6 sm:px-8 md:px-12 flex justify-between items-center border-b border-indigo-700 dark:border-indigo-500 shadow-sm"
   >
     <span
       class="text-sm md:text-lg lg:text-xl font-bold tracking-wide"
@@ -43,7 +43,10 @@ const theme = useTheme();
       <BellAlertIcon
         class="w-6 h-6"
       />
-      <form action="">
+      <form
+        action=""
+        class="hidden md:block"
+      >
         <div
           class="flex justify-between items-center ps-2 bg-white dark:bg-slate-900 rounded border border-slate-300 focus-within:border-indigo-700 dark:focus-within:border-indigo-500"
         >

@@ -1,7 +1,6 @@
 <script setup>
 import {
   computed,
-  ref,
 } from 'vue';
 import ProfileSidebarSection from './ProfileSidebarSection.vue';
 import {

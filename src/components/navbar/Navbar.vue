@@ -16,7 +16,10 @@ import {
   watch,
   watchEffect,
 } from 'vue';
-import { useRoute } from 'vue-router';
+import {
+  useRoute,
+  useRouter,
+} from 'vue-router';
 import SidebarMobile from './SidebarMobile.vue';
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '@/stores/cartStore.js';
@@ -29,6 +32,7 @@ import {
   UserIcon,
 } from '@heroicons/vue/24/outline';
 const route = useRoute();
+const router = useRouter();
 const isActiveLink = (
   routePath,
 ) => {
@@ -224,8 +228,22 @@ const { isLoggedIn } =
             class="w-6 h-6 text-indigo-700 dark:text-indigo-500"
           />
         </button>
-        <RouterLink
-          to="/profile"
+        <div
+          @click="
+            () => {
+              if (
+                isLoggedIn
+              ) {
+                router.push(
+                  '/profile',
+                );
+              } else {
+                router.push(
+                  '/auth/login',
+                );
+              }
+            }
+          "
           class="flex items-center gap-0.5 text-indigo-700 dark:text-indigo-500 border border-indigo-700 p-0.5 rounded-sm"
         >
           <span
@@ -235,7 +253,7 @@ const { isLoggedIn } =
           <UserIcon
             class="w-6 h-6"
           />
-        </RouterLink>
+        </div>
         <!-- toggle sidbars -->
         <button
           @click="
